@@ -4,3 +4,14 @@
 
 /* Arabic editorial treatment — intentionally LTR per brief */
 body{direction:ltr}.navlinks,.eyebrow,.hero-bottom,.section-head,.project,.statement,.statement-grid,.transition{font-family:"Noto Sans Arabic",Arial,sans-serif}.hero h1,.statement h2{font-family:"Noto Kufi Arabic","Noto Sans Arabic",sans-serif;letter-spacing:-.045em}.hero h1{line-height:1.08}.hero h1 em{font-family:"Noto Kufi Arabic","Noto Sans Arabic",sans-serif;font-style:normal;font-weight:400}.statement h2{line-height:1.25}.project strong{font-family:"Noto Kufi Arabic","Noto Sans Arabic",sans-serif;letter-spacing:-.035em}.footer-shell iframe{overflow:hidden}
+
+
+/* Arabic LTR composition — Arabic shaping preserved, every block anchored left. */
+@import url("https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap");
+html,body,main,section,nav,div,p,h1,h2,strong,span,a{direction:ltr;text-align:left}
+body{font-family:"IBM Plex Sans Arabic",Tahoma,Arial,sans-serif}
+.brand,.navlinks,.eyebrow,.hero-bottom,.section-head,.project,.statement,.statement-grid,.transition{font-family:"IBM Plex Sans Arabic",Tahoma,Arial,sans-serif}
+.hero h1,.statement h2,.project strong{font-family:"Alexandria","IBM Plex Sans Arabic",Tahoma,sans-serif;letter-spacing:-.045em}
+.hero h1{line-height:1.08;font-weight:500}.hero h1 em{font-family:"Alexandria","IBM Plex Sans Arabic",Tahoma,sans-serif;font-style:normal;font-weight:400}
+.statement h2{line-height:1.28}.project strong{letter-spacing:-.025em}
+.navlinks{flex-direction:row}.project,.section-head,.statement-grid{direction:ltr}.project span:last-child{text-align:left!important}

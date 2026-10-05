@@ -1,4 +1,8 @@
-# Oblique Studio
-Static, GitHub/Vercel-ready site. No npm build is required.
+# أوبليك — نسخة عربية LTR
 
-The interactive footer is mounted from `public/footer.html`, using the supplied ThreeUI standalone source rather than the unavailable npm export.
+موقع ثابت جاهز للنشر على Vercel. لا توجد خطوة build مطلوبة.
+
+- الواجهة عربية بالكامل.
+- تركيب الصفحة LTR مع محاذاة عربية إلى اليسار.
+- Alexandria للعناوين وIBM Plex Sans Arabic للنصوص.
+- التذييل التفاعلي مضمّن محليًا بدون تمرير داخلي.
