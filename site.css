@@ -15,3 +15,17 @@ body{font-family:"IBM Plex Sans Arabic",Tahoma,Arial,sans-serif}
 .hero h1{line-height:1.08;font-weight:500}.hero h1 em{font-family:"Alexandria","IBM Plex Sans Arabic",Tahoma,sans-serif;font-style:normal;font-weight:400}
 .statement h2{line-height:1.28}.project strong{letter-spacing:-.025em}
 .navlinks{flex-direction:row}.project,.section-head,.statement-grid{direction:ltr}.project span:last-child{text-align:left!important}
+
+/* Arabic RTL correction */
+@import url("https://fonts.googleapis.com/css2?family=Changa:wght@300;400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap");
+html,body{direction:rtl;text-align:right}
+body,.brand,.navlinks,.eyebrow,.hero-bottom,.section-head,.project,.statement,.statement-grid,.transition{font-family:"Noto Sans Arabic",Tahoma,Arial,sans-serif}
+.hero h1,.statement h2,.project strong{font-family:"Changa","Noto Sans Arabic",Tahoma,sans-serif;letter-spacing:-.025em}
+.hero h1{line-height:1.03;font-weight:500}.statement h2{line-height:1.35}.project strong{line-height:1.2}
+nav,.hero,.work,.statement,.transition,.hero-bottom,.section-head,.project,.statement-grid{direction:rtl;text-align:right}
+.navlinks{flex-direction:row}.project span:last-child{text-align:left!important}.section-head span:last-child{text-align:left}.hero-bottom p{margin-left:auto;margin-right:0}.eyebrow{letter-spacing:0;text-transform:none}.transition{letter-spacing:0;text-transform:none}
+@media(max-width:700px){.project span:last-child{text-align:left!important}}
+/* final hard RTL override */
+html[dir="rtl"] body,html[dir="rtl"] main,html[dir="rtl"] section,html[dir="rtl"] nav,html[dir="rtl"] div,html[dir="rtl"] p,html[dir="rtl"] h1,html[dir="rtl"] h2,html[dir="rtl"] strong,html[dir="rtl"] span,html[dir="rtl"] a{direction:rtl!important;text-align:right}
+html[dir="rtl"] .project,html[dir="rtl"] .section-head,html[dir="rtl"] .statement-grid{direction:rtl!important}
+html[dir="rtl"] .project span:last-child,html[dir="rtl"] .section-head span:last-child{text-align:left!important}
