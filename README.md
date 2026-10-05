@@ -1,18 +1,4 @@
-# Oblique Studio / ThreeUI Footer Test
+# Oblique Studio
+Static, GitHub/Vercel-ready site. No npm build is required.
 
-A minimal Vite + React + TypeScript creative-studio landing page using ThreeUI's verified `SectionSublevelStudioFooters` component.
-
-## Local
-```bash
-npm install
-npm run dev
-```
-
-## Production
-```bash
-npm run build
-```
-
-Deploy to Vercel as a Vite project. No environment variables are required.
-
-The ThreeUI footer is imported directly from `@designcodeio/threeui` and its official shared stylesheet, rather than recreated from screenshots.
+The interactive footer is mounted from `public/footer.html`, using the supplied ThreeUI standalone source rather than the unavailable npm export.
