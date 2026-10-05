@@ -18,3 +18,13 @@ nav{height:84px;display:flex;align-items:center;justify-content:space-between;pa
 @keyframes heroReveal{from{transform:translateY(115%)}to{transform:none}}@keyframes heroRise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}@keyframes planetSwap{from{opacity:0;transform:translateY(35%)}to{opacity:1;transform:none}}@keyframes ruleDraw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @media(max-width:700px){.space-hero{min-height:720px}.space-nav{height:70px;right:20px;left:20px}.space-links{gap:14px;font-size:11px}.space-copy{padding-top:125px}.planet-kicker{margin-bottom:18px}.planet-title{font-size:22vw}.planet-rule{margin:25px 0 18px;width:70px}.planet-lede{font-size:12px;line-height:1.9;max-width:390px}.planet-switcher{margin-top:42px;height:70px}.hero-cta{width:165px;height:54px}.side-planet{width:94px}.side-right{right:-47px}.side-left{left:-47px}.side-label{top:78px;font-size:12px}.label-right{right:18px}.label-left{left:18px}.space-scroll{width:58px;height:58px;bottom:25px}.work{padding-top:90px}}
 @media(prefers-reduced-motion:reduce){.space-sky video{display:none}.planet-kicker span,.planet-title span,.planet-rule,.planet-lede{animation:none}.side-planet,.hero-cta,.space-scroll{transition:none}}
+
+/* seamless hero → work transition */
+.space-hero{overflow:visible;margin-bottom:-150px;z-index:2}
+.space-hero::after{content:"";position:absolute;z-index:4;pointer-events:none;left:0;right:0;bottom:-155px;height:310px;background:linear-gradient(180deg,rgba(9,9,9,0) 0%,rgba(9,9,9,.06) 12%,rgba(9,9,9,.38) 35%,#090909 76%,#090909 100%)}
+.space-sky,.space-shade{bottom:-115px}
+.space-sky video{height:calc(100% + 115px)}
+.space-shade{background:linear-gradient(180deg,rgba(7,4,15,.42),rgba(8,5,17,.06) 38%,rgba(7,4,14,.18) 72%,#090909 100%),radial-gradient(circle at 50% 46%,transparent 0 32%,rgba(4,2,10,.28) 76%,rgba(4,2,10,.62) 100%)}
+.work{position:relative;z-index:5;background:linear-gradient(180deg,rgba(9,9,9,0) 0,#090909 150px);padding-top:calc(8vw + 180px)}
+.space-scroll{z-index:6}
+@media(max-width:700px){.space-hero{margin-bottom:-105px}.space-hero::after{bottom:-110px;height:220px}.space-sky,.space-shade{bottom:-75px}.space-sky video{height:calc(100% + 75px)}.work{padding-top:210px}}
