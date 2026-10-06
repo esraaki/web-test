@@ -23,3 +23,11 @@ describe('bold Arabic display typography',()=>{
   expect(css).toMatch(/\.manifestTitle h2,.projectsHead h2,.processCopy h2\{[^}]*font-weight:600!important/)
  })
 })
+
+describe('component-rich motion pass',()=>{
+ it('has sticky cinematic project scene',()=>{expect(app).toContain('stickyScene');expect(css).toMatch(/\.stickyScene\{[^}]*position:sticky/)})
+ it('has shuffle stack interaction',()=>{expect(app).toContain('shuffleStack');expect(app).toContain('shuffle')})
+ it('has floating glass overlays',()=>{expect(app).toContain('floatingGlass');expect(css).toContain('backdrop-filter:blur')})
+ it('has scroll-linked zoom and reveal text',()=>{expect(app).toContain('useScroll');expect(app).toContain('useTransform');expect(app).toContain('wordReveal')})
+ it('has zero red styling',()=>{expect(css).not.toMatch(/(?:red|#f00|#ff0000|#e[0-9a-f]{5}|#d[0-9a-f]{5})/i)})
+})

@@ -1,5 +1,5 @@
 import React,{useState}from"react";
-import{motion,AnimatePresence,useReducedMotion}from"framer-motion";
+import{motion,AnimatePresence,useReducedMotion,useScroll,useTransform}from"framer-motion";
 import{ArrowUpLeft,ChevronDown,Menu,Plus}from"lucide-react";
 
 const media=[
@@ -26,15 +26,16 @@ function MaterialBoard(){
  </div>
 }
 export default function App(){
- const[activeHero,setActiveHero]=useState(0);const[open,setOpen]=useState(null);const reduce=useReducedMotion();
+ const[activeHero,setActiveHero]=useState(0);const[open,setOpen]=useState(null);const[shuffle,setShuffle]=useState(0);const reduce=useReducedMotion();
+ const{scrollYProgress}=useScroll();const heroScale=useTransform(scrollYProgress,[0,.12],[1,1.14]);const heroY=useTransform(scrollYProgress,[0,.14],[0,90]);const titleY=useTransform(scrollYProgress,[0,.12],[0,-70]);
  return <main>
   <section className="heroLens" style={{"--hero":`url(${media[activeHero]})`}}>
-   <div className="heroImage"/><div className="heroShade"/>
+   <motion.div className="heroImage" style={{scale:reduce?1:heroScale,y:reduce?0:heroY}}/><div className="heroShade"/>
    <nav><a className="brand" href="#">أثَر</a><div className="navLinks"><a href="#projects">المشاريع</a><a href="#studio">الاستوديو</a><a href="#process">المنهج</a></div><button aria-label="القائمة"><Menu size={19}/></button></nav>
    <FrameMark n="01"/>
    <div className="heroCopy">
     <motion.small initial={{opacity:0,y:12}} animate={{opacity:1,y:0}}>استوديو عمارة وفضاءات — الرياض</motion.small>
-    <motion.h1 initial={{opacity:0,y:80}} animate={{opacity:1,y:0}} transition={{duration:.9,ease:[.2,.8,.2,1]}}>نصمّم<br/><em className="ruqaa">ما يبقى.</em></motion.h1>
+    <motion.h1 style={{y:reduce?0:titleY}} initial={{opacity:0,y:80}} animate={{opacity:1,y:0}} transition={{duration:.9,ease:[.2,.8,.2,1]}}><span className="wordReveal">نصمّم</span><br/><em className="ruqaa wordReveal">ما يبقى.</em></motion.h1>
     <div className="heroBottom"><p>نصوغ العمارة من الضوء والمادة والسياق. مساحات هادئة، دقيقة، ومتجذّرة في مكانها.</p><JellyButton/></div>
    </div>
    <aside className="projectLens">
@@ -43,7 +44,7 @@ export default function App(){
     <div className="lensMeta"><h3>{projects[activeHero][0]}</h3><p>{projects[activeHero][1]} / {projects[activeHero][2]}</p></div>
     <div className="lensRail">{projects.map((x,i)=><button key={x[0]} className={i===activeHero?"active":""} onClick={()=>setActiveHero(i)}><span>0{i+1}</span><i/></button>)}</div>
    </aside>
-   <div className="heroCoordinates">24°43′N<br/>46°40′E</div>
+   <div className="heroCoordinates">24°43′N<br/>46°40′E</div><motion.div className="floatingGlass fg1" animate={{y:[0,-13,0],rotate:[0,1,0]}} transition={{duration:5,repeat:Infinity}}>ضوء / 07:42</motion.div><motion.div className="floatingGlass fg2" animate={{y:[0,10,0]}} transition={{duration:6,repeat:Infinity}}>مادة / حجر نجد</motion.div>
   </section>
 
   <section id="studio" className="manifest">
@@ -59,17 +60,17 @@ export default function App(){
      <div className="projectMeta"><h3>{x[0]}</h3><p>{x[1]}　{x[2]}　{x[3]}</p></div>
     </motion.article>)}
    </div>
-   <div className="projectTicker"><span>أثَر / ضوء / مادة / سياق / صمت / أثَر / ضوء / مادة / سياق / صمت /</span></div>
+   <motion.aside className="floatingGlass projectNote" initial={{opacity:0,y:30}} whileInView={{opacity:1,y:0}} viewport={{once:true}}>04 مشاريع / 03 مدن<br/><b>لغة واحدة، سياقات مختلفة.</b></motion.aside><div className="projectTicker"><span>أثَر / ضوء / مادة / سياق / صمت / أثَر / ضوء / مادة / سياق / صمت /</span></div>
   </section>
 
-  <section className="focus">
+  <section className="focusWrap"><div className="focus stickyScene">
    <FrameMark n="04"/><div className="focusMedia"/><div className="focusGrid"/>
    <div className="focusCopy"><small>تحت المجهر / العلا</small><h2 className="ruqaa">رواق الحجر</h2><p>كتلة هادئة تنفتح على السماء، وتستعير لونها من الصخر بدل أن تنافسه.</p></div>
    <div className="focusData"><span>24° 35′ N</span><span>38° 02′ E</span><span>1,840 م²</span></div>
-  </section>
+  </div></section>
 
   <section id="process" className="process">
-   <FrameMark n="05"/><div className="processCopy"><small>من دفاترنا</small><h2>الفكرة لا تبدأ<br/>على الشاشة.</h2><p>نختبر النسبة، الملمس والضوء باليد. العينات ليست عرضاً نهائياً؛ هي جزء من التفكير.</p></div><MaterialBoard/>
+   <FrameMark n="05"/><div className="processCopy"><small>من دفاترنا</small><h2>الفكرة لا تبدأ<br/>على الشاشة.</h2><p>نختبر النسبة، الملمس والضوء باليد. العينات ليست عرضاً نهائياً؛ هي جزء من التفكير.</p></div><div className="shuffleWrap"><button className="shuffle" onClick={()=>setShuffle(v=>v+1)}>اخلط المواد <span>↻</span></button><motion.div className="shuffleStack" key={shuffle} initial={{rotate:-3,scale:.97}} animate={{rotate:0,scale:1}}><MaterialBoard/></motion.div></div>
   </section>
 
   <section className="disciplines">
