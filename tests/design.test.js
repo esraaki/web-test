@@ -15,3 +15,11 @@ describe('art direction correction',()=>{
  it('uses one recurring architectural frame motif',()=>{expect(app).toContain('frameMark');expect(app).toContain('projectStage');expect(app).toContain('materialBoard')})
  it('hero gallery is an architectural lens not phone UI',()=>{expect(app).toContain('projectLens');expect(app).not.toContain('glassPhone')})
 })
+
+describe('bold Arabic display typography',()=>{
+ it('uses bold Aref and assertive Arabic display weights',()=>{
+  expect(css).toMatch(/\.ruqaa\{[^}]*font-weight:700!important/)
+  expect(css).toMatch(/\.heroCopy h1\{[^}]*font-weight:600!important/)
+  expect(css).toMatch(/\.manifestTitle h2,.projectsHead h2,.processCopy h2\{[^}]*font-weight:600!important/)
+ })
+})
