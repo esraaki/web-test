@@ -1,5 +1,0 @@
-const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const reveals=document.querySelectorAll('.reveal');
-if(reduced){reveals.forEach(el=>el.classList.add('visible'))}else{const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.12});reveals.forEach(el=>io.observe(el))}
-document.querySelectorAll('.faq-button').forEach(btn=>btn.addEventListener('click',()=>{const article=btn.closest('article');const was=article.classList.contains('open');document.querySelectorAll('.faq-list article').forEach(a=>{a.classList.remove('open');a.querySelector('button').setAttribute('aria-expanded','false')});if(!was){article.classList.add('open');btn.setAttribute('aria-expanded','true')}}));
-const menu=document.querySelector('.menu');menu?.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')==='true';menu.setAttribute('aria-expanded',String(!open));document.querySelector('.navlinks').classList.toggle('mobile-open',!open)});
