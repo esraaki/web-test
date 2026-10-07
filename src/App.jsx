@@ -1,94 +1,21 @@
-import React,{useState}from"react";
-import{motion,AnimatePresence,useReducedMotion,useScroll,useTransform}from"framer-motion";
-import{ArrowUpLeft,ChevronDown,Menu,Plus}from"lucide-react";
-
-const media=[
-"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=92",
-"https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=2000&q=92",
-"https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=2000&q=92",
-"https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=2000&q=92"
-];
-const projects=[
-["دار الوادي","الرياض","سكن خاص","2026",media[0]],
-["رواق الحجر","العلا","فضاء ثقافي","2026",media[1]],
-["بيت البحر","جدة","ضيافة","2025",media[2]],
-["دار النخيل","الدرعية","سكن خاص","2025",media[3]]
-];
-const faq=["كيف تبدأون مشروعاً جديداً؟","هل تعملون خارج الرياض؟","ما مدة مرحلة التصميم؟","هل تتولون التصميم الداخلي أيضاً؟"];
-
-function FrameMark({n="01"}){return <span className="frameMark"><i/><b>{n}</b><i/></span>}
-function JellyButton(){return <motion.a className="jelly" href="#projects" whileHover={{scale:1.035}} whileTap={{scale:.96}}><span>استكشف المشاريع</span><ArrowUpLeft size={17}/><motion.i animate={{x:[0,54,0]}} transition={{duration:4,repeat:Infinity,ease:"easeInOut"}}/></motion.a>}
-function MaterialBoard(){
- return <div className="materialBoard">
-  {media.slice(0,3).map((x,i)=><motion.figure key={x} initial={{opacity:0,y:90,rotate:0}} whileInView={{opacity:1,y:i*17,rotate:[-5,4,-1][i]}} viewport={{once:true}} whileHover={{y:-18,rotate:0,zIndex:9}} transition={{type:"spring",stiffness:100,damping:18}}>
-   <img src={x} alt="دراسة مادية للمشروع"/><figcaption><span>0{i+1}</span><b>{["حجر محلي","ظل عميق","خشب طبيعي"][i]}</b></figcaption>
-  </motion.figure>)}
- </div>
-}
-export default function App(){
- const[activeHero,setActiveHero]=useState(0);const[open,setOpen]=useState(null);const[shuffle,setShuffle]=useState(0);const reduce=useReducedMotion();
- const{scrollYProgress}=useScroll();const heroScale=useTransform(scrollYProgress,[0,.12],[1,1.14]);const heroY=useTransform(scrollYProgress,[0,.14],[0,90]);const titleY=useTransform(scrollYProgress,[0,.12],[0,-70]);
- return <main>
-  <section className="heroLens" style={{"--hero":`url(${media[activeHero]})`}}>
-   <motion.div className="heroImage" style={{scale:reduce?1:heroScale,y:reduce?0:heroY}}/><div className="heroShade"/>
-   <nav><a className="brand" href="#">أثَر</a><div className="navLinks"><a href="#projects">المشاريع</a><a href="#studio">الاستوديو</a><a href="#process">المنهج</a></div><button aria-label="القائمة"><Menu size={19}/></button></nav>
-   <FrameMark n="01"/>
-   <div className="heroCopy">
-    <motion.small initial={{opacity:0,y:12}} animate={{opacity:1,y:0}}>استوديو عمارة وفضاءات — الرياض</motion.small>
-    <motion.h1 style={{y:reduce?0:titleY}} initial={{opacity:0,y:80}} animate={{opacity:1,y:0}} transition={{duration:.9,ease:[.2,.8,.2,1]}}><span className="wordReveal">نصمّم</span><br/><em className="ruqaa wordReveal">ما يبقى.</em></motion.h1>
-    <div className="heroBottom"><p>نصوغ العمارة من الضوء والمادة والسياق. مساحات هادئة، دقيقة، ومتجذّرة في مكانها.</p><JellyButton/></div>
-   </div>
-   <aside className="projectLens">
-    <div className="lensTop"><span>عدسة المشروع</span><b>0{activeHero+1} / 04</b></div>
-    <AnimatePresence mode="wait"><motion.div className="lensImage" key={activeHero} initial={{clipPath:"inset(0 100% 0 0)"}} animate={{clipPath:"inset(0 0 0 0)"}} exit={{opacity:0}} transition={{duration:.55}}><img src={projects[activeHero][4]} alt={projects[activeHero][0]}/><span>↗</span></motion.div></AnimatePresence>
-    <div className="lensMeta"><h3>{projects[activeHero][0]}</h3><p>{projects[activeHero][1]} / {projects[activeHero][2]}</p></div>
-    <div className="lensRail">{projects.map((x,i)=><button key={x[0]} className={i===activeHero?"active":""} onClick={()=>setActiveHero(i)}><span>0{i+1}</span><i/></button>)}</div>
-   </aside>
-   <div className="heroCoordinates">24°43′N<br/>46°40′E</div><motion.div className="floatingGlass fg1" animate={{y:[0,-13,0],rotate:[0,1,0]}} transition={{duration:5,repeat:Infinity}}>ضوء / 07:42</motion.div><motion.div className="floatingGlass fg2" animate={{y:[0,10,0]}} transition={{duration:6,repeat:Infinity}}>مادة / حجر نجد</motion.div>
-  </section>
-
-  <section id="studio" className="manifest">
-   <FrameMark n="02"/><div className="manifestTitle"><small>فلسفة الاستوديو</small><h2>نبدأ بالمكان،<br/>لا بالشكل.</h2></div>
-   <div className="manifestBody"><span className="rule"/><p>قبل الخط الأول، نقرأ الضوء. اتجاه الريح. طريقة الحركة. ملمس المادة. العمارة عندنا ليست شكلاً يُفرض على المكان، بل إجابة تنشأ منه.</p><b>أثَر / منهج 01</b></div>
-  </section>
-
-  <section id="projects" className="projects">
-   <div className="projectsHead"><FrameMark n="03"/><small>أعمال مختارة / 2025—2026</small><h2>أماكن<br/>لها حضور.</h2></div>
-   <div className="projectStage">
-    {projects.map((x,i)=><motion.article key={x[0]} className={`project p${i+1}`} initial={{opacity:0,y:80}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.15}} transition={{duration:.75}}>
-     <div className="projectImage"><img src={x[4]} alt={x[0]}/><span>0{i+1}</span><motion.i initial={{scale:0}} whileHover={{scale:1}}/></div>
-     <div className="projectMeta"><h3>{x[0]}</h3><p>{x[1]}　{x[2]}　{x[3]}</p></div>
-    </motion.article>)}
-   </div>
-   <motion.aside className="floatingGlass projectNote" initial={{opacity:0,y:30}} whileInView={{opacity:1,y:0}} viewport={{once:true}}>04 مشاريع / 03 مدن<br/><b>لغة واحدة، سياقات مختلفة.</b></motion.aside><div className="projectTicker"><span>أثَر / ضوء / مادة / سياق / صمت / أثَر / ضوء / مادة / سياق / صمت /</span></div>
-  </section>
-
-  <section className="focusWrap"><div className="focus stickyScene">
-   <FrameMark n="04"/><div className="focusMedia"/><div className="focusGrid"/>
-   <div className="focusCopy"><small>تحت المجهر / العلا</small><h2 className="ruqaa">رواق الحجر</h2><p>كتلة هادئة تنفتح على السماء، وتستعير لونها من الصخر بدل أن تنافسه.</p></div>
-   <div className="focusData"><span>24° 35′ N</span><span>38° 02′ E</span><span>1,840 م²</span></div>
-  </div></section>
-
-  <section id="process" className="process">
-   <FrameMark n="05"/><div className="processCopy"><small>من دفاترنا</small><h2>الفكرة لا تبدأ<br/>على الشاشة.</h2><p>نختبر النسبة، الملمس والضوء باليد. العينات ليست عرضاً نهائياً؛ هي جزء من التفكير.</p></div><div className="shuffleWrap"><button className="shuffle" onClick={()=>setShuffle(v=>v+1)}>اخلط المواد <span>↻</span></button><motion.div className="shuffleStack" key={shuffle} initial={{rotate:-3,scale:.97}} animate={{rotate:0,scale:1}}><MaterialBoard/></motion.div></div>
-  </section>
-
-  <section className="disciplines">
-   <div className="discIntro"><FrameMark n="06"/><small>ما نصنعه</small><p>من أول كتلة حتى آخر ملمس.</p></div>
-   <div className="discList">{["العمارة","التصميم الداخلي","الضيافة","الفضاءات الثقافية"].map((x,i)=><motion.div key={x} whileHover={{x:-12}}><span>0{i+1}</span><h3>{x}</h3><p>{["مساكن ومبانٍ متجذّرة في المناخ والسياق.","تفاصيل ومواد تصنع إحساس المكان من الداخل.","تجارب إقامة ذات هوية هادئة ومميزة.","أماكن عامة تُبنى حول الناس والذاكرة."][i]}</p><ArrowUpLeft/></motion.div>)}</div>
-  </section>
-
-  <section className="faq">
-   <div className="faqImage"/><FrameMark n="07"/><div className="faqGlass">
-    <div className="faqTitle"><small>قبل أن نبدأ</small><h2>أسئلة<br/>واضحة.</h2></div>
-    <div className="faqItems">{faq.map((q,i)=><article key={q}><button onClick={()=>setOpen(open===i?null:i)} aria-expanded={open===i}><span>{q}</span><Plus className={open===i?"turn":""}/></button><AnimatePresence>{open===i&&<motion.p initial={{height:0,opacity:0}} animate={{height:"auto",opacity:1}} exit={{height:0,opacity:0}}>نبدأ بلقاء لفهم الموقع والاحتياج والميزانية. بعدها نحدد نطاقاً واضحاً، جدولاً للمراحل، وما الذي سنسلّمه في كل مرحلة.</motion.p>}</AnimatePresence></article>)}</div>
-   </div>
-  </section>
-
-  <footer className="footer">
-   <div className="footerImage"/><div className="footerShade"/><FrameMark n="08"/>
-   <div className="footerCTA"><small>المشروع القادم</small><h2>لنبنِ شيئاً<br/><em className="ruqaa">يبقى.</em></h2><a href="mailto:hello@athar.studio">ابدأ محادثة <ArrowUpLeft/></a></div>
-   <div className="footerGlass"><b className="brand">أثَر</b><div><span>الرياض، المملكة العربية السعودية</span><span>hello@athar.studio</span></div><div><a href="#projects">المشاريع</a><a href="#studio">الاستوديو</a><a href="#process">المنهج</a></div><small>© 2026 ATHAR STUDIO</small></div>
-  </footer>
- </main>
-}
+import React,{useRef,useState}from"react";import{motion,AnimatePresence,useScroll,useTransform,useSpring}from"framer-motion";import{ArrowUpLeft,ChevronDown,Menu,Shuffle,Plus}from"lucide-react";
+const P=[
+{name:"دار الوادي",loc:"الرياض",type:"سكن خاص",img:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=92"},
+{name:"رواق الحجر",loc:"العلا",type:"فضاء ثقافي",img:"https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=2000&q=92"},
+{name:"بيت البحر",loc:"جدة / البحر الأحمر",type:"ضيافة",img:"https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=2000&q=92"},
+{name:"دار النخيل",loc:"الدرعية",type:"سكن خاص",img:"https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=2000&q=92"}];
+const glass={background:"rgba(8,12,13,.20)",backdropFilter:"blur(18px)",border:"1px solid rgba(255,255,255,.3)"};
+function JellyButton(){const[x,setX]=useState(0);return <motion.a className="jelly" href="#projects" onPointerMove={e=>{let r=e.currentTarget.getBoundingClientRect();setX(e.clientX-r.left)}} whileHover={{scale:1.04}} whileTap={{scale:.94}}><span>اكتشف المشاريع</span><ArrowUpLeft/><motion.i animate={{x:x-25}} transition={{type:"spring",stiffness:180,damping:18}}/></motion.a>}
+function ProjectLens({active,setActive}){return <motion.aside className="projectLens" style={glass} initial={{opacity:0,x:-50}} animate={{opacity:1,x:0}}><div className="lensHead"><span>PROJECT LENS</span><b>0{active+1}/04</b></div><AnimatePresence mode="wait"><motion.img key={active} src={P[active].img} initial={{clipPath:"inset(0 100% 0 0)"}} animate={{clipPath:"inset(0)"}} exit={{opacity:0}}/></AnimatePresence><h3>{P[active].name}</h3><p>{P[active].loc} — {P[active].type}</p><div className="lensDots">{P.map((p,i)=><button aria-label={p.name} className={i===active?"on":""} onClick={()=>setActive(i)}><span>0{i+1}</span><i/></button>)}</div></motion.aside>}
+function Hero(){const ref=useRef(null),[active,setActive]=useState(0);const{scrollYProgress}=useScroll({target:ref,offset:["start start","end start"]});const scale=useTransform(scrollYProgress,[0,1],[1,1.25]),titleY=useTransform(scrollYProgress,[0,1],[0,-240]),glassY=useTransform(scrollYProgress,[0,1],[0,160]);return <section ref={ref} className="Hero hero"><motion.div className="heroMedia" style={{backgroundImage:`url(${P[active].img})`,scale}}/><div className="shade"/><nav style={glass}><b>أثَر</b><span>المشاريع　 الاستوديو　 المنهج</span><Menu/></nav><motion.div className="heroTitle" style={{y:titleY}}><small>استوديو عمارة وفضاءات / الرياض</small><h1>نصمّم<br/><em className="ruqaa">ما يبقى.</em></h1><div><p>عمارة تتكوّن من الضوء والمادة والسياق، لا من الشكل وحده.</p><JellyButton/></div></motion.div><motion.div style={{y:glassY}}><ProjectLens active={active} setActive={setActive}/></motion.div><motion.div className="floatGlass g1" style={glassY?{...glass,y:glassY}:glass}>24°43′N / 46°40′E</motion.div><motion.div className="floatGlass g2" style={{...glass,y:glassY}}>ضوء الصباح / 07:42</motion.div><div className="scrollCue">SCROLL <i/></div></section>}
+function Manifesto(){return <section className="Manifesto manifesto"><div className="tech">02 — PHILOSOPHY</div><motion.h2 initial={{clipPath:"inset(0 0 100% 0)",y:80}} whileInView={{clipPath:"inset(0)",y:0}} viewport={{once:true}} transition={{duration:.9}}>نبدأ بالمكان،<br/>لا بالشكل.</motion.h2><div className="manifestCopy"><i/><p>قبل الخط الأول نقرأ اتجاه الشمس، حركة الناس، صوت المكان، وملمس المادة. المشروع الجيد لا يبدو موضوعاً فوق أرضه؛ يبدو وكأنه كان ينتظر أن يُكتشف.</p><span>أثَر / منهج 01</span></div></section>}
+function Projects(){return <section id="projects" className="Projects projects"><header><span>03 / SELECTED WORK</span><h2>أربعة أماكن.<br/>أربع شخصيات.</h2></header><div className="projectJourney">{P.map((p,i)=><article className={"projectScene s"+i} key={p.name}><div className="stickyProject"><motion.div className="projectPhoto" initial={{clipPath:"inset(12% 10%)"}} whileInView={{clipPath:"inset(0%)"}} transition={{duration:1}}><img src={p.img}/><span className="coord">0{i+1} / {p.loc}</span></motion.div><motion.div className="projectWords" initial={{y:100,opacity:0}} whileInView={{y:0,opacity:1}}><h3>{p.name}</h3><p>{p.type}　 /　 202{6-i%2}</p></motion.div></div></article>)}</div></section>}
+function ProjectChapter(){const ref=useRef(null);const{scrollYProgress}=useScroll({target:ref});const scale=useTransform(scrollYProgress,[0,1],[1,1.35]);const darkness=useTransform(scrollYProgress,[0,.8],[.08,.65]);const x=useTransform(scrollYProgress,[.2,.8],[80,0]);return <section ref={ref} className="ProjectChapter chapter"><div className="chapterSticky"><motion.img src={P[1].img} style={{scale}}/><motion.div className="chapterShade" style={{opacity:darkness}}/><div className="drawingGrid"/><motion.div className="chapterCopy" style={{x}}><small>04 / تحت المجهر / العلا</small><h2 className="ruqaa">رواق الحجر</h2><p>الظل هنا مادة. الفتحة إطار للسماء. والحجر لا يزيّن المبنى؛ هو الذي يحدّد إيقاعه.</p></motion.div><div className="notes"><span>حجر رملي محلي</span><span>24°35′N</span><span>1,840 م²</span></div></div></section>}
+function MaterialStack(){const[order,setOrder]=useState([0,1,2,3]);const shuffle=()=>setOrder(o=>[o[1],o[3],o[0],o[2]]);return <div className="stackArea"><button className="shuffle" onClick={shuffle}><Shuffle/> اخلط المواد</button><div className="MaterialStack stack">{order.map((n,i)=><motion.figure layout key={n} animate={{rotate:[-10,7,-4,2][i],x:[-55,35,-5,70][i],y:[35,-5,55,15][i],zIndex:i}} whileHover={{y:-45,rotate:0,scale:1.04,zIndex:9}} transition={{type:"spring",stiffness:110,damping:17}}><img src={P[n].img}/><figcaption>0{n+1} / {["حجر","ظل","خشب","نموذج"][n]}</figcaption></motion.figure>)}</div></div>}
+function Process(){return <section className="Process process"><div><small>05 / MATERIAL STUDIES</small><h2>نفكّر<br/>بأيدينا.</h2><p>العينة، الاسكتش، النموذج والصورة ليست توثيقاً للعمل. هي جزء من طريقة الوصول إليه.</p></div><MaterialStack/></section>}
+const D=[["العمارة",P[0].img],["التصميم الداخلي",P[2].img],["الضيافة",P[3].img],["الفضاءات الثقافية",P[1].img]];
+function Disciplines(){return <section className="Disciplines disciplines"><header><small>06 / DISCIPLINES</small><h2>من الكتلة<br/>إلى الملمس.</h2></header>{D.map((d,i)=><motion.article whileHover="hover"><motion.div className="discImage" variants={{hover:{clipPath:"inset(0 0 0 0)",scale:1}}} initial={{clipPath:"inset(50% 0 50% 0)",scale:1.1}}><img src={d[1]}/></motion.div><span>0{i+1}</span><h3>{d[0]}</h3><p>مساحات تُبنى حول الضوء، الحركة، والذاكرة.</p><ArrowUpLeft/></motion.article>)}</section>}
+function Credibility(){return <section className="Credibility credibility"><small>07 / STUDIO</small><h2>أقل ضجيجاً.<br/>أكثر أثراً.</h2><div className="numbers"><div><b>14</b><span>مشروعاً مختاراً</span></div><div><b>04</b><span>مدن</span></div><div><b>09</b><span>سنوات ممارسة</span></div></div></section>}
+function Faq(){const[open,setOpen]=useState(null);return <section className="Faq faq"><div className="faqPhoto"/><motion.div className="faqGlass" style={glass} initial={{y:90,opacity:0}} whileInView={{y:0,opacity:1}}><header><small>08 / BEFORE WE BEGIN</small><h2>أسئلة<br/>واضحة.</h2></header><div>{["كيف تبدأون مشروعاً جديداً؟","هل تعملون خارج الرياض؟","ما مدة مرحلة التصميم؟","هل تتولون التصميم الداخلي أيضاً؟"].map((q,i)=><article><button aria-expanded={open===i} onClick={()=>setOpen(open===i?null:i)}>{q}<Plus className={open===i?"turn":""}/></button><AnimatePresence>{open===i&&<motion.p initial={{height:0,opacity:0}} animate={{height:"auto",opacity:1}} exit={{height:0,opacity:0}}>نبدأ بالموقع والاحتياج والميزانية، ثم نبني نطاقاً واضحاً ومراحل محددة قبل أي قرار شكلي.</motion.p>}</AnimatePresence></article>)}</div></motion.div></section>}
+function Footer(){return <footer className="Footer footer"><div className="footerMedia"/><div className="shade"/><motion.div className="footerWords" initial={{y:120}} whileInView={{y:0}}><small>09 / NEXT SPACE</small><h2>لنبنِ شيئاً<br/><em className="ruqaa">يبقى.</em></h2><a href="mailto:hello@athar.studio">ابدأ محادثة <ArrowUpLeft/></a></motion.div><motion.div className="footerGlass" style={glass} initial={{y:160}} whileInView={{y:0}}><b>أثَر</b><span>الرياض، المملكة العربية السعودية<br/>hello@athar.studio</span><span>المشاريع　الاستوديو　المنهج</span><small>© 2026 ATHAR</small></motion.div></footer>}
+export default function App(){return <main><Hero/><Manifesto/><Projects/><ProjectChapter/><Process/><Disciplines/><Credibility/><Faq/><Footer/></main>}
