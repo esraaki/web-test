@@ -27,3 +27,112 @@
 @media(max-width:800px){.heroTitle h1{line-height:1.22!important}.steps{grid-template-columns:1fr 1fr;gap:50px}.principles{height:auto}.principlesSticky{position:relative;height:auto;min-height:900px;grid-template-columns:1fr;padding:100px 7vw}.principleList{margin-top:50px}.principles .actionButton{grid-column:1}.footer{height:115vh}.footerMetaTop{grid-template-columns:1fr 1fr;top:7vh}.footerMetaTop small{grid-column:1/-1}.footerWords{top:32vh}.footerWords h2{font-size:18vw!important}.principleList button{grid-template-columns:35px .7fr 1fr}}
 @media(max-width:420px){.steps{grid-template-columns:1fr}.principleList button{grid-template-columns:30px 1fr}.principleList p{grid-column:2;margin-top:8px}.footerMetaTop{grid-template-columns:1fr}.footerMetaTop span:nth-of-type(2){display:none}}
 .actionButton>span,.actionButton>svg{position:relative;z-index:2}.actionButton>i{z-index:1;mix-blend-mode:multiply}.actionButton.light>i{mix-blend-mode:screen;opacity:.48}
+
+
+/* ROUND 5 — one residential architecture story */
+.actionButton{
+  min-width:172px;
+  min-height:52px;
+  justify-content:center;
+  text-align:center;
+}
+.actionButton>span{display:flex;align-items:center;justify-content:center;line-height:1.35}
+.actionButton.light{
+  background:#fff;
+  color:#0b0e0f;
+  border-color:#fff;
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+}
+.actionButton.light>i{mix-blend-mode:multiply;opacity:.5}
+.heroKicker{
+  display:block;
+  margin-bottom:18px;
+  font-family:"Noto Kufi Arabic",sans-serif;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.02em;
+  color:rgba(255,255,255,.78);
+}
+.projects>header h2{max-width:900px}
+
+/* The principles are hover/touch driven, so one viewport is enough.
+   This removes the former empty black scroll tail. */
+.principles{height:100vh;min-height:820px}
+.principlesSticky{position:relative;height:100%;min-height:820px}
+.principleList button{transition:opacity .22s ease,transform .22s ease,background .22s ease}
+.principleList button:hover,.principleList button.active{background:rgba(255,255,255,.035)}
+.principlesSticky>img{transition:filter .35s ease}
+
+/* Faster visual rhythm for the four-step sequence */
+.steps>div{will-change:transform,opacity}
+.steps b{box-shadow:0 0 0 0 rgba(88,118,255,.35)}
+.steps>div:hover b{box-shadow:0 0 0 8px rgba(88,118,255,.11);transform:translateY(-2px)}
+
+/* Footer: the continuity comes from the photograph's real pale sky.
+   No synthetic white gradient is placed over it. */
+.footer{
+  height:112vh;
+  min-height:900px;
+  background:#eef0ef;
+  padding:0;
+}
+.footerMedia{
+  position:absolute;
+  inset:0;
+  background-image:url("https://images.unsplash.com/photo-1760475244813-45b6807a0a72?auto=format&fit=crop&w=2600&q=90");
+  background-position:center 32%;
+  background-size:cover;
+  background-repeat:no-repeat;
+}
+.footerMedia:after{display:none!important}
+.footerLayout{
+  position:relative;
+  z-index:3;
+  display:grid;
+  grid-template-columns:1.18fr .82fr;
+  gap:8vw;
+  align-items:start;
+  padding:10vh 6vw 0;
+}
+.footerWords{
+  position:relative;
+  top:auto;
+  right:auto;
+  align-self:start;
+  padding:0;
+}
+.footerWords h2{
+  margin:0!important;
+  font-size:clamp(88px,9.5vw,158px);
+  color:#101415!important;
+  text-shadow:0 1px 0 rgba(255,255,255,.18);
+}
+.footerMetaTop{
+  position:relative;
+  inset:auto;
+  display:grid;
+  grid-template-columns:.55fr 1.2fr 1fr;
+  gap:28px;
+  align-items:start;
+  padding-top:1.5rem;
+  color:#101415;
+}
+.footerMetaTop>b{font-family:"Noto Kufi Arabic";font-size:30px}
+.footerMetaTop span,.footerMetaTop small{font-size:11px;line-height:2;color:#171c1e}
+.footerMetaTop small{grid-column:2/-1;margin-top:20px;opacity:.68}
+
+@media(max-width:800px){
+  .principles{height:auto;min-height:900px}
+  .principlesSticky{height:auto;min-height:900px}
+  .footer{height:105vh;min-height:820px}
+  .footerMedia{background-position:58% 30%}
+  .footerLayout{grid-template-columns:1fr;padding-top:8vh;gap:26px}
+  .footerMetaTop{grid-template-columns:.55fr 1.2fr 1fr;padding-top:0}
+  .footerWords h2{font-size:18vw!important}
+}
+@media(max-width:520px){
+  .footerMetaTop{grid-template-columns:1fr 1.5fr}
+  .footerMetaTop span:nth-of-type(2){grid-column:2}
+  .footerMetaTop small{grid-column:1/-1}
+}
