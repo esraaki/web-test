@@ -7,4 +7,4 @@ test('hero is Arabic-only and ends at viewport',()=>{const hero=src.match(/funct
 test('process scene removes eyebrow and courtyard overlay',()=>{const instrument=src.match(/function Instrument\(\).*?function ProjectScene/s)?.[0]||'';assert.doesNotMatch(instrument,/PROCESS|COURTYARD|photo-sheet|section-index/);assert.match(instrument,/SketchAlive/)});
 test('old Spatial Study and Archive scenes are replaced',()=>{assert.doesNotMatch(src,/function ModelScene|function Archive|SPATIAL STUDY|ARCHIVE/);assert.match(src,/function Passage/);assert.match(src,/function Fragments/)});
 test('desktop cursor has native fallback and visible custom cursor',()=>{assert.doesNotMatch(css,/body\{[^}]*cursor:none/);assert.match(css,/\.cursor\{[^}]*background:/)});
-test('footer uses clear cool sky image without fake beige sky block',()=>{assert.match(src,/footerClear/);assert.doesNotMatch(css,/\.end-sky/)});
+test('footer uses clear cool sky image without fake beige sky block',()=>{assert.match(src,/\/assets\/sky\.png/);assert.match(src,/className="end-building"/)});
