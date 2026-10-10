@@ -4,7 +4,7 @@ import fs from 'node:fs';
 const src=fs.readFileSync(new URL('../src/main.jsx',import.meta.url),'utf8');
 const css=fs.readFileSync(new URL('../src/styles.css',import.meta.url),'utf8');
 test('hero keeps أثر as one word with blinds reveal and looping video',()=>{assert.match(src,/className="hero-word"/);assert.doesNotMatch(src,/heroLetters|hero-letter/);assert.match(src,/<motion\.video[^>]*className="hero-video"[^>]*autoPlay[^>]*muted[^>]*loop/);assert.match(src,/className="blind-slice"/);});
-test('sketch scene uses a real looping architectural sketch video with no caption',()=>{assert.match(src,/className="drawing-paper"/);assert.match(src,/className="sketch-video"/);assert.match(src,/14377337/);assert.doesNotMatch(src,/sketch-caption|realSketch/);});
+test('sketch scene is now an interactive architectural drawing with no stock video',()=>{assert.match(src,/className="drawing-paper"/);assert.match(src,/InteractiveDrawing/);assert.doesNotMatch(src,/sketch-video|14377337|sketch-caption/);});
 test('light shadow material has a real light background',()=>{assert.match(src,/light:[^,\n]+/);assert.doesNotMatch(src,/light:''|light:null/);});
 test('passage heading is normal white, not inverted',()=>{assert.match(css,/\.passage h2\{[^}]*color:#fff/);assert.match(css,/\.passage h2\{color:#fff;mix-blend-mode:normal/);});
 test('fragments use requested blue',()=>{assert.match(css,/\.fragments\{[^}]*background:#084CA0/i);});

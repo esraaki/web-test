@@ -8,14 +8,14 @@ test('hero uses residential villa video and removes drag scene copy',()=>{
   assert.match(src,/38675652\/16428547_3840_2160_30fps\.mp4/);
   assert.doesNotMatch(src,/اسحب المشهد/);
 });
-test('instrument copy enters from right and sketch video enters from left',()=>{
+test('instrument copy enters from right and interactive drawing enters from left',()=>{
   assert.match(src,/className="instrument-copy"[^>]*initial=\{\{x:'18%'/);
-  assert.match(src,/className="sketch-alive"[^>]*initial=\{\{x:'-18%'/);
-  assert.match(src,/14377337\/14377337-hd_1920_1080_30fps\.mp4/);
-  assert.match(src,/className="sketch-video"/);
+  assert.match(src,/className="sketch-alive interactive-drawing"[^>]*initial=\{\{x:'-18%'/);
+  assert.doesNotMatch(src,/14377337/);
+  assert.match(src,/InteractiveDrawing/);
 });
 test('light has a local photo and passage description is larger',()=>{
-  assert.match(src,/light:'\/assets\/light-villa\.jpg'/);
+  assert.match(src,/35986943/);
   assert.match(css,/\.passage p\{[^}]*font-size:clamp\(16px,1\.35vw,22px\)/);
 });
 test('fragments avoid the previously missing light remote and use requested blue',()=>{
