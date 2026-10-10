@@ -27,3 +27,25 @@
 .end-copy{z-index:4;color:#fff}.end-copy h2{color:#fff;text-shadow:0 3px 32px rgba(0,24,58,.2)}
 .end-links{z-index:5}
 @media(max-width:800px){.hero-word{font-size:37vw;margin-top:10vh}.drawing-paper{transform:rotate(-1deg)}.end-building{width:145%;max-width:none;left:-22.5%;max-height:58vh}.end-copy{top:12vh}}
+
+/* V5 — requested refinement + new interactive section */
+.sketch-video{position:absolute;inset:-8%;width:116%;height:116%;object-fit:cover;object-position:center;filter:grayscale(1) contrast(1.12) brightness(1.08);mix-blend-mode:multiply}
+.paper-vignette{position:absolute;inset:0;box-shadow:inset 0 0 90px rgba(82,65,42,.16);background:linear-gradient(110deg,rgba(255,255,255,.18),transparent 35%,rgba(88,70,43,.05));pointer-events:none}
+.instrument-copy,.sketch-alive{will-change:transform,opacity}
+.passage p{font-size:clamp(16px,1.35vw,22px);line-height:1.9;width:min(32vw,520px)}
+.fragments{background:#084CA0}
+.end-building{width:100%;max-width:none;max-height:none;left:0;right:0;bottom:-1px;object-fit:contain;object-position:center bottom}
+.end-links{color:#0b0b0b;font-weight:700}.end-links a{border-bottom-color:#0b0b0b}
+.compare-section{position:relative;min-height:125vh;background:#e8e4d9;color:#0b0b0b;padding:13vh 4vw 12vh;overflow:hidden}
+.compare-copy{position:relative;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;gap:5vw;margin-bottom:8vh}
+.compare-copy h2{font-size:clamp(72px,9vw,145px);line-height:1;margin:0;font-weight:900;letter-spacing:-.07em}
+.compare-copy p{width:27vw;font-size:14px;line-height:2;margin:0 0 1vh}
+.compare-stage{position:relative;width:92vw;height:72vh;overflow:hidden;background:#111;touch-action:none;user-select:none;cursor:ew-resize}
+.compare-built,.compare-plan{position:absolute;inset:0;background-size:cover;background-position:center}
+.compare-built{filter:saturate(.82)}
+.compare-plan{right:auto;left:0;z-index:2;filter:grayscale(1) contrast(1.08);background-color:#f2efe6;border-right:1px solid #111}
+.compare-handle{position:absolute;z-index:4;top:0;bottom:0;width:2px;background:#fff;transform:translateX(-1px)}
+.compare-handle:before{content:'';position:absolute;top:50%;left:50%;width:62px;height:62px;border-radius:50%;background:#fff;transform:translate(-50%,-50%);box-shadow:0 8px 30px #0003}
+.compare-handle span{position:absolute;z-index:2;top:50%;left:50%;transform:translate(-50%,-52%);font:24px Inter;color:#111}
+.compare-label{position:absolute;z-index:5;bottom:2.2vh;padding:8px 12px;background:#fff;color:#111;font-size:10px}.plan-label{left:1.5vw}.built-label{right:1.5vw}
+@media(max-width:800px){.passage p{width:74vw;font-size:16px}.compare-section{min-height:110vh;padding:11vh 5vw}.compare-copy{display:block}.compare-copy h2{font-size:18vw}.compare-copy p{width:80vw;margin-top:3vh}.compare-stage{width:90vw;height:60vh}.end-building{width:100%;left:0;max-height:none}}
