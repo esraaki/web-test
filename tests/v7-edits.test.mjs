@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
+const src=fs.readFileSync(new URL('../src/main.jsx',import.meta.url),'utf8');const css=fs.readFileSync(new URL('../src/styles.css',import.meta.url),'utf8');
+test('v7 edits',()=>{assert.match(css,/840px,84vw/);assert.match(css,/hero-word\{height:1\.08em;overflow:visible/);assert.match(src,/function LineToSpace/);assert.doesNotMatch(src,/function InteractiveDrawing/);assert.match(src,/mlarquitectura/);assert.match(src,/clipPath:`inset\(0 \$\{100-split\}% 0 0\)`/);assert.doesNotMatch(src,/width:`\$\{split\}%`/);assert.match(src,/building-v7\.png/);assert.match(src,/\['62%','0%'\]/);});

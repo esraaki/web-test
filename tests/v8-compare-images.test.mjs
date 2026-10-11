@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
+const src=fs.readFileSync(new URL('../src/main.jsx',import.meta.url),'utf8');
+test('comparison uses generated matching render and sketch assets',()=>{assert.match(src,/compareRender:\s*'\/assets\/compare-render\.png'/);assert.match(src,/compareSketch:\s*'\/assets\/compare-sketch\.png'/);const section=src.match(/function PlanToSpace\(\).*?function End/s)?.[0]||'';assert.match(section,/IMG\.compareRender/);assert.match(section,/IMG\.compareSketch/);assert.doesNotMatch(section,/IMG\.light|IMG\.plan/);});
