@@ -140,7 +140,7 @@ nav.scrolled .brand{width:82px;height:46px}
 /* V12 — scroll-scrubbed day → night architectural sequence */
 .time-section{height:340vh;position:relative;background:#07090a;color:#fff;direction:rtl}
 .time-stage{position:sticky;top:0;height:100vh;overflow:hidden;background:#0a0b0c}
-.time-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;background:#111}
+.time-canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#111;display:block}
 .time-vignette{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.03) 32%,rgba(0,0,0,.47) 100%),linear-gradient(180deg,rgba(0,0,0,.14),transparent 28%,transparent 72%,rgba(0,0,0,.25));z-index:1}
 .time-copy{position:absolute;z-index:3;right:4vw;top:13vh;width:min(520px,43vw);text-align:right}
 .time-copy h2{margin:0;font-size:clamp(38px,4.5vw,72px);line-height:1.15;font-weight:900;letter-spacing:-.045em}
@@ -156,5 +156,5 @@ nav.scrolled .brand{width:82px;height:46px}
 .time-scroll-note{position:absolute;z-index:4;right:4vw;bottom:4.7vh;display:flex;align-items:center;gap:12px;font-size:10px;color:rgba(255,255,255,.72)}
 .time-scroll-note i{font:16px Inter;font-style:normal;animation:timeNudge 1.6s ease-in-out infinite}
 @keyframes timeNudge{0%,100%{transform:translateY(-2px)}50%{transform:translateY(5px)}}
-@media(max-width:800px){.time-section{height:300vh}.time-copy{right:6vw;top:14vh;width:78vw}.time-copy h2{font-size:11vw}.time-copy p{width:72vw;font-size:12px}.time-clock{left:5vw;bottom:4vh;width:52vw;padding:14px 15px}.time-clock strong{font-size:12vw}.time-scroll-note{right:6vw;bottom:4.2vh}.time-video{object-position:center center}.time-vignette{background:linear-gradient(180deg,rgba(0,0,0,.32),transparent 50%,rgba(0,0,0,.3))}}
+@media(max-width:800px){.time-section{height:300vh}.time-copy{right:6vw;top:14vh;width:78vw}.time-copy h2{font-size:11vw}.time-copy p{width:72vw;font-size:12px}.time-clock{left:5vw;bottom:4vh;width:52vw;padding:14px 15px}.time-clock strong{font-size:12vw}.time-scroll-note{right:6vw;bottom:4.2vh}.time-canvas{object-position:center center}.time-vignette{background:linear-gradient(180deg,rgba(0,0,0,.32),transparent 50%,rgba(0,0,0,.3))}}
 @media(prefers-reduced-motion:reduce){.time-section{height:100vh}.time-scroll-note{display:none}.time-scroll-note i{animation:none}}

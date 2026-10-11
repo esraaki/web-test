@@ -21,31 +21,62 @@ const IMG={
 };
 const projects=[['01','دار الوادي',IMG.hero],['02','بيت الساحة',IMG.courtyard],['03','دار النور',IMG.desert]];
 const HERO_VIDEO='https://videos.pexels.com/video-files/38675652/16428547_3840_2160_30fps.mp4';
-const TIME_VIDEO='/assets/day-night-scroll.mp4';
+const TIME_FRAME_COUNT=90;
+const timeFrameSrc=i=>`/assets/day-night-frames/frame-${String(i+1).padStart(3,'0')}.webp`;
 
 function Cursor(){const [p,setP]=useState({x:-100,y:-100});const [mode,setMode]=useState('');const [seen,setSeen]=useState(false);useEffect(()=>{const m=e=>{setSeen(true);setP({x:e.clientX,y:e.clientY})};const o=e=>setMode(e.target.closest('[data-cursor]')?.dataset.cursor||'');window.addEventListener('mousemove',m);window.addEventListener('mouseover',o);return()=>{window.removeEventListener('mousemove',m);window.removeEventListener('mouseover',o)}},[]);return <motion.div className={'cursor '+(seen?'seen ':'')+(mode?'active':'')} animate={{x:p.x-20,y:p.y-20}} transition={{type:'spring',damping:28,stiffness:450,mass:.2}}><i/><b>{mode}</b></motion.div>}
 function Nav(){const [menuOpen,setMenuOpen]=useState(false);const [scrolled,setScrolled]=useState(false);useEffect(()=>{const onScroll=()=>setScrolled(window.scrollY>72);onScroll();window.addEventListener('scroll',onScroll,{passive:true});return()=>window.removeEventListener('scroll',onScroll)},[]);return <><nav className={scrolled?'scrolled':''}><a className="brand" aria-label="أثر"><img className="brand-logo" src={IMG.logo} alt="أثر"/></a><button className="menu-trigger" data-cursor={menuOpen?'إغلاق':'فتح'} onClick={()=>setMenuOpen(v=>!v)}><span>{menuOpen?'×':'＋'}</span> القائمة</button></nav><AnimatePresence>{menuOpen&&<motion.div className="menu-overlay" initial={{clipPath:'inset(0 0 100% 0)'}} animate={{clipPath:'inset(0 0 0% 0)'}} exit={{clipPath:'inset(0 0 100% 0)'}} transition={{duration:.7,ease:[.76,0,.24,1]}}><div className="menu-grid"/><div className="menu-ghost">أثر</div><div className="menu-links">{['المشاريع','الاستوديو','المنهج','تواصل معنا'].map((x,i)=><motion.a key={x} href="#" data-cursor="↗" initial={{y:80,opacity:0}} animate={{y:0,opacity:1}} transition={{delay:.18+i*.08,duration:.6}}><span>٠{i+1}</span>{x}<i>↗</i></motion.a>)}</div><p className="menu-note">عمارة تُقرأ بالحركة، والضوء، والفراغ.</p></motion.div>}</AnimatePresence></>}
 function Hero(){const ref=useRef();const {scrollYProgress}=useScroll({target:ref,offset:['start start','end start']});const scale=useTransform(scrollYProgress,[0,1],[1,1.06]);const typeY=useTransform(scrollYProgress,[0,1],['0%','-8%']);const blinds=Array.from({length:9});const title='نصمّم أثراً يبقى.';return <section className="hero" ref={ref}><motion.video className="hero-video" autoPlay muted loop playsInline src={HERO_VIDEO} style={{scale}} initial={{opacity:0}} animate={{opacity:1}} transition={{duration:2.1,delay:.1,ease:'easeOut'}}/><motion.div className="hero-darkness" initial={{opacity:1}} animate={{opacity:0}} transition={{duration:2.4,ease:[.4,0,.2,1]}}/><div className="hero-grid"/><motion.div className="hero-type" style={{y:typeY}}><div className="hero-word hero-heading" aria-label={title}>{blinds.map((_,i)=><motion.span aria-hidden="true" className="blind-slice" key={i} style={{clipPath:`inset(${i*11.111}% 0 ${100-(i+1)*11.111}% 0)`}} initial={{x:i%2===0?'8%':'-8%',opacity:0}} animate={{x:'0%',opacity:1}} transition={{delay:.35+i*.055,duration:.85,ease:[.16,1,.3,1]}}><span className="hero-line">نصمّم أثراً</span><span className="hero-line">يبقى.</span></motion.span>)}</div><motion.div className="hero-content" initial={{y:24,opacity:0}} animate={{y:0,opacity:1}} transition={{delay:1.05,duration:.75}}><p className="hero-sub">نحوّل الفكرة إلى بيتٍ واضح، هادئ، ومصمّم حول الضوء والحياة اليومية.</p><a className="hero-cta" href="#projects" data-cursor="↗">استكشف المشاريع <span>↗</span></a></motion.div></motion.div></section>}
 function TimeOfDay(){
   const ref=useRef();
-  const videoRef=useRef();
+  const canvasRef=useRef();
+  const framesRef=useRef([]);
+  const targetProgress=useRef(0);
+  const displayProgress=useRef(0);
+  const rafRef=useRef(0);
   const [clock,setClock]=useState('06:00');
   const [phase,setPhase]=useState('الصباح');
-  const progressRef=useRef(0);
   const {scrollYProgress}=useScroll({target:ref,offset:['start start','end end']});
   const formatTime=p=>{const start=6*60,end=22*60,total=Math.round(start+(end-start)*p);return `${String(Math.floor(total/60)).padStart(2,'0')}:${String(total%60).padStart(2,'0')}`};
-  useEffect(()=>scrollYProgress.on('change',p=>{
-    progressRef.current=p;
-    const video=videoRef.current;if(video&&Number.isFinite(video.duration)) video.currentTime=Math.min(video.duration-.02,Math.max(0,p*video.duration));
-    setClock(formatTime(p));
-    setPhase(p<.23?'الصباح':p<.5?'الظهيرة':p<.72?'الغروب':p<.88?'الشفق':'الليل');
-  }),[scrollYProgress]);
+  const drawFrame=(index)=>{
+    const canvas=canvasRef.current,img=framesRef.current[index];
+    if(!canvas||!img||!img.complete)return;
+    const rect=canvas.getBoundingClientRect(),dpr=Math.min(window.devicePixelRatio||1,2);
+    const w=Math.max(1,Math.round(rect.width*dpr)),h=Math.max(1,Math.round(rect.height*dpr));
+    if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h}
+    const ctx=canvas.getContext('2d');
+    const scale=Math.max(w/img.naturalWidth,h/img.naturalHeight);
+    const dw=img.naturalWidth*scale,dh=img.naturalHeight*scale;
+    ctx.clearRect(0,0,w,h);ctx.drawImage(img,(w-dw)/2,(h-dh)/2,dw,dh);
+  };
+  useEffect(()=>{
+    let alive=true;
+    framesRef.current=Array.from({length:TIME_FRAME_COUNT},(_,i)=>{
+      const img=new Image();img.decoding='async';img.src=timeFrameSrc(i);
+      if(i===0)img.onload=()=>alive&&drawFrame(0);
+      return img;
+    });
+    const resize=()=>drawFrame(Math.round(displayProgress.current*(TIME_FRAME_COUNT-1)));
+    window.addEventListener('resize',resize,{passive:true});
+    const tick=()=>{
+      const delta=targetProgress.current-displayProgress.current;
+      displayProgress.current=Math.abs(delta)<.0004?targetProgress.current:displayProgress.current+delta*.18;
+      const p=Math.max(0,Math.min(1,displayProgress.current));
+      drawFrame(Math.round(p*(TIME_FRAME_COUNT-1)));
+      setClock(formatTime(p));
+      setPhase(p<.23?'الصباح':p<.5?'الظهيرة':p<.72?'الغروب':p<.88?'الشفق':'الليل');
+      rafRef.current=requestAnimationFrame(tick);
+    };
+    rafRef.current=requestAnimationFrame(tick);
+    return()=>{alive=false;cancelAnimationFrame(rafRef.current);window.removeEventListener('resize',resize)};
+  },[]);
+  useEffect(()=>scrollYProgress.on('change',p=>{targetProgress.current=Math.max(0,Math.min(1,p))}),[scrollYProgress]);
   const copyOpacity=useTransform(scrollYProgress,[0,.12,.7,.9],[1,1,.72,0]);
   const copyY=useTransform(scrollYProgress,[0,1],['0%','-18%']);
   const clockScale=useTransform(scrollYProgress,[0,1],[1,.94]);
   return <section className="time-section" ref={ref}>
     <div className="time-stage">
-      <video ref={videoRef} className="time-video" src={TIME_VIDEO} muted playsInline preload="auto" onLoadedMetadata={e=>{e.currentTarget.currentTime=progressRef.current*e.currentTarget.duration}} aria-label="تحوّل البيت من النهار إلى الليل"/>
+      <canvas ref={canvasRef} className="time-canvas" aria-label="تحوّل البيت من النهار إلى الليل"/>
       <div className="time-vignette"/>
       <motion.div className="time-copy" style={{opacity:copyOpacity,y:copyY}}>
         <h2>البيت نفسه.<br/><span>والضوء يغيّره.</span></h2>
