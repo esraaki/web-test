@@ -133,3 +133,6 @@ nav.scrolled .brand{width:82px;height:46px}
   .end{height:175vh}
   .end-stage .end-building{width:120%;left:-10%}
 }
+
+/* Temporary second-section concepts tester */
+.concept-tester{position:fixed;right:16px;bottom:16px;z-index:9998;width:42px;height:42px;display:grid;place-items:center;background:#fff;color:#050505;border:1px solid #050505;text-decoration:none;font-size:18px;transition:transform .25s ease,background .25s ease,color .25s ease}.concept-tester:hover{transform:translateY(-3px) rotate(3deg);background:#084CA0;color:#fff}
