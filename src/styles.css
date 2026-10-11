@@ -218,3 +218,44 @@ nav.scrolled .brand{width:82px;height:46px}
   .hero-heading .hero-line{min-height:1.06em;line-height:1}
   .end-stage .end-links{bottom:calc(1.2vh + 12px)}
 }
+
+/* V17 — root-cause fixes: Arabic hero rhythm + contained project hover */
+.hero-word.hero-heading{
+  min-height:2.42em;
+  padding-top:.26em;
+  padding-bottom:.30em;
+  line-height:.90;
+}
+.hero-heading .blind-slice{
+  height:100%;
+  padding:0;
+  overflow:visible;
+}
+.hero-heading .hero-line{
+  display:block;
+  height:auto;
+  min-height:.94em;
+  margin-top:0;
+  padding:0;
+  padding-left:0;
+  line-height:.90;
+  overflow:visible;
+}
+.project-copy .project-cta{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+}
+.project-cta::before{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  width:auto;
+  height:auto;
+}
+.project-cta>*{position:relative;z-index:1}
+
+@media(max-width:800px){
+  .hero-word.hero-heading{min-height:2.54em;padding-top:.28em;padding-bottom:.32em;line-height:.94}
+  .hero-heading .hero-line{min-height:.98em;line-height:.94;margin-top:0;padding-left:0}
+}
