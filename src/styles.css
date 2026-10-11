@@ -93,3 +93,16 @@ nav.scrolled .brand{width:82px;height:46px}
 .compare-copy h2{font-size:clamp(66px,8vw,128px)}
 .compare-copy p{width:min(39vw,570px);font-size:15px;line-height:2.15}
 @media(max-width:800px){.brand{width:82px;height:48px}.hero-type{top:21vh}.hero-word.hero-heading{font-size:15.5vw;height:1.34em;white-space:normal;line-height:1.16}.hero-heading .blind-slice{white-space:normal}.hero-content{display:block;margin-top:3vh}.hero-sub{width:82vw;font-size:14px}.hero-cta{margin-top:2.4vh}.fragment-title{display:block;width:90vw}.fragment-copy{margin-top:3vh;max-width:80vw}.compare-copy p{width:84vw;font-size:14px}}
+
+/* V10 — crop, alignment, hover reveal, footer parallax */
+.hero-type{top:10vh}
+.hero-word.hero-heading{height:2.35em;overflow:visible;padding:.12em 0 .18em;line-height:.98;white-space:normal}
+.hero-heading .blind-slice{height:100%;overflow:visible;white-space:normal}
+.hero-line{display:block;height:1.06em;overflow:visible}
+.hero-content{margin-top:1.2vh}
+.fragment-title{align-items:center;margin-bottom:2vh}
+.fragment-copy{transform:translateY(-3.5vh);padding-bottom:0}
+.compare-stage{cursor:ew-resize}
+.end{overflow:hidden}
+.end-building{bottom:-1px;will-change:transform;transform-origin:center bottom}
+@media(max-width:800px){.hero-type{top:14vh}.hero-word.hero-heading{height:2.55em;font-size:15vw;line-height:1.03}.hero-line{height:1.1em}.fragment-copy{transform:none}.hero-content{margin-top:1vh}}
