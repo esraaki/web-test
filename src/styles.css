@@ -203,3 +203,18 @@ nav.scrolled .brand{width:82px;height:46px}
 .word-list button:hover i{transform:translate(4px,-4px)}
 @media(max-width:800px){.time-clock{left:5vw;right:auto;top:3.2vh;bottom:auto;transform-origin:left top}.time-copy{right:6vw;top:14vh}.end-stage .end-links{bottom:calc(1.2vh + 40px)}}
 @media(hover:none){.hero-cta:hover,.project-cta:hover{transform:none}.hero-cta:hover::before,.project-cta:hover::before{transform:translateY(102%)}}
+
+
+/* EDIT ROUND — hero rhythm, project CTA containment, footer, fragment cleanup */
+.hero-word.hero-heading{line-height:.96;min-height:2.48em;padding:.18em 0 .28em}
+.hero-heading .hero-line{min-height:1.02em;line-height:.96;padding-block:.02em}
+.project-copy .project-cta{overflow:hidden;isolation:isolate}
+.project-cta::before{z-index:0;inset:0}
+.project-cta>*{position:relative;z-index:1}
+.project-cta b{font:inherit;font-weight:inherit}
+.end-stage .end-links{bottom:calc(1.2vh + 12px)}
+@media(max-width:800px){
+  .hero-word.hero-heading{line-height:1;min-height:2.58em;padding:.2em 0 .3em}
+  .hero-heading .hero-line{min-height:1.06em;line-height:1}
+  .end-stage .end-links{bottom:calc(1.2vh + 12px)}
+}
