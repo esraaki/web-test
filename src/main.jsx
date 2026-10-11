@@ -30,39 +30,51 @@ function Hero(){const ref=useRef();const {scrollYProgress}=useScroll({target:ref
 function TimeOfDay(){
   const ref=useRef();
   const canvasRef=useRef();
+  const clockRef=useRef();
   const framesRef=useRef([]);
   const targetProgress=useRef(0);
   const displayProgress=useRef(0);
   const rafRef=useRef(0);
-  const [clock,setClock]=useState('06:00');
+  const lastDrawnPosition=useRef(-1);
+  const lastClock=useRef('');
   const {scrollYProgress}=useScroll({target:ref,offset:['start start','end end']});
   const formatTime=p=>{const start=6*60,end=22*60,total=Math.round(start+(end-start)*p);return `${String(Math.floor(total/60)).padStart(2,'0')}:${String(total%60).padStart(2,'0')}`};
-  const drawFrame=(index)=>{
-    const canvas=canvasRef.current,img=framesRef.current[index];
-    if(!canvas||!img||!img.complete)return;
-    const rect=canvas.getBoundingClientRect(),dpr=Math.min(window.devicePixelRatio||1,2);
-    const w=Math.max(1,Math.round(rect.width*dpr)),h=Math.max(1,Math.round(rect.height*dpr));
-    if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h}
-    const ctx=canvas.getContext('2d');
+  const fitImage=(ctx,img,w,h,alpha=1)=>{
     const scale=Math.max(w/img.naturalWidth,h/img.naturalHeight);
     const dw=img.naturalWidth*scale,dh=img.naturalHeight*scale;
-    ctx.clearRect(0,0,w,h);ctx.drawImage(img,(w-dw)/2,(h-dh)/2,dw,dh);
+    ctx.globalAlpha=alpha;ctx.drawImage(img,(w-dw)/2,(h-dh)/2,dw,dh);
+  };
+  const drawScrubFrame=(progress,force=false)=>{
+    const canvas=canvasRef.current;if(!canvas)return;
+    const framePosition=Math.max(0,Math.min(TIME_FRAME_COUNT-1,progress*(TIME_FRAME_COUNT-1)));
+    if(!force&&Math.abs(framePosition-lastDrawnPosition.current)<.035)return;
+    const base=Math.floor(framePosition),next=Math.min(base+1,TIME_FRAME_COUNT-1),blend=framePosition-base;
+    const a=framesRef.current[base],b=framesRef.current[next];
+    if(!a?.complete||!a.naturalWidth)return;
+    const rect=canvas.getBoundingClientRect(),dpr=Math.min(window.devicePixelRatio||1,1.5);
+    const w=Math.max(1,Math.round(rect.width*dpr)),h=Math.max(1,Math.round(rect.height*dpr));
+    if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h}
+    const ctx=canvas.getContext('2d',{alpha:false});ctx.globalAlpha=1;ctx.clearRect(0,0,w,h);
+    fitImage(ctx,a,w,h,1);
+    if(b?.complete&&b.naturalWidth&&blend>.001){ctx.globalAlpha=blend;fitImage(ctx,b,w,h,blend)}
+    ctx.globalAlpha=1;lastDrawnPosition.current=framePosition;
   };
   useEffect(()=>{
     let alive=true;
     framesRef.current=Array.from({length:TIME_FRAME_COUNT},(_,i)=>{
       const img=new Image();img.decoding='async';img.src=timeFrameSrc(i);
-      if(i===0)img.onload=()=>alive&&drawFrame(0);
+      img.decode?.().catch(()=>{}).finally(()=>{if(alive&&i===0)drawScrubFrame(0,true)});
       return img;
     });
-    const resize=()=>drawFrame(Math.round(displayProgress.current*(TIME_FRAME_COUNT-1)));
+    const resize=()=>drawScrubFrame(displayProgress.current,true);
     window.addEventListener('resize',resize,{passive:true});
     const tick=()=>{
       const delta=targetProgress.current-displayProgress.current;
-      displayProgress.current=Math.abs(delta)<.0004?targetProgress.current:displayProgress.current+delta*.18;
+      displayProgress.current=Math.abs(delta)<.00015?targetProgress.current:displayProgress.current+delta*.24;
       const p=Math.max(0,Math.min(1,displayProgress.current));
-      drawFrame(Math.round(p*(TIME_FRAME_COUNT-1)));
-      setClock(formatTime(p));
+      drawScrubFrame(p);
+      const nextClock=formatTime(p);
+      if(nextClock!==lastClock.current&&clockRef.current){clockRef.current.textContent=nextClock;lastClock.current=nextClock}
       rafRef.current=requestAnimationFrame(tick);
     };
     rafRef.current=requestAnimationFrame(tick);
@@ -72,9 +84,9 @@ function TimeOfDay(){
   const copyOpacity=useTransform(scrollYProgress,[0,.12,.7,.9],[1,1,.72,0]);
   const copyY=useTransform(scrollYProgress,[0,1],['0%','-18%']);
   const clockScale=useTransform(scrollYProgress,[0,1],[1,.94]);
-  const sunOpacity=useTransform(scrollYProgress,[0,.55,.78],[1,.85,0]);
-  const sunRotate=useTransform(scrollYProgress,[0,.78],[-18,24]);
-  const moonOpacity=useTransform(scrollYProgress,[.58,.82,1],[0,.65,1]);
+  const sunOpacity=useTransform(scrollYProgress,[0,.44,.68],[1,.82,0]);
+  const sunRotate=useTransform(scrollYProgress,[0,.68],[-18,24]);
+  const moonOpacity=useTransform(scrollYProgress,[.42,.66,.9],[0,.72,1]);
   return <section className="time-section" ref={ref}>
     <div className="time-stage">
       <canvas ref={canvasRef} className="time-canvas" aria-label="تحوّل البيت من النهار إلى الليل"/>
@@ -91,7 +103,7 @@ function TimeOfDay(){
           </div>
           <i/>
         </div>
-        <strong>{clock}</strong>
+        <strong ref={clockRef}>06:00</strong>
         <div className="time-range"><span>06:00</span><b><motion.i style={{scaleX:scrollYProgress}}/></b><span>22:00</span></div>
       </motion.div>
     </div>
