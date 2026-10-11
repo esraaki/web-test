@@ -106,3 +106,30 @@ nav.scrolled .brand{width:82px;height:46px}
 .end{overflow:hidden}
 .end-building{bottom:-1px;will-change:transform;transform-origin:center bottom}
 @media(max-width:800px){.hero-type{top:14vh}.hero-word.hero-heading{height:2.55em;font-size:15vw;line-height:1.03}.hero-line{height:1.1em}.fragment-copy{transform:none}.hero-content{margin-top:1vh}}
+
+/* V11 — hero/project hierarchy + explicit footer scroll stage */
+.hero-type{top:16vh}
+.hero-content{display:flex;flex-direction:column;align-items:flex-start;gap:0;margin-top:3.6vh}
+.hero-sub{margin:0}
+.hero-cta{margin-top:2.1vh}
+
+.project-copy{position:absolute;z-index:5;right:5vw;top:10vh;display:flex;flex-direction:column;align-items:flex-start;gap:2.2vh}
+.project-copy h3{font-size:clamp(58px,8vw,128px);line-height:1;margin:0;font-weight:900;letter-spacing:-.065em}
+.project-copy .project-cta{position:static;min-width:180px;padding:15px 22px}
+.project-name{display:none}
+
+.end{height:190vh;position:relative;background:#084CA0;overflow:visible}
+.end-stage{position:sticky;top:0;height:100vh;overflow:hidden;background:#084CA0}
+.end-stage .end-sky-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;z-index:0}
+.end-stage .end-building{position:absolute;z-index:2;left:0;bottom:0;width:100%;height:auto;max-width:none;max-height:none;object-fit:contain;object-position:center bottom;transform-origin:center bottom;will-change:transform}
+.end-stage .end-copy{position:absolute;z-index:4;top:10vh;right:4vw}
+.end-stage .end-links{position:absolute;z-index:5;bottom:1.2vh;right:4vw;left:4vw}
+
+@media(max-width:800px){
+  .hero-type{top:18vh}
+  .hero-content{margin-top:3vh}
+  .project-copy{right:6vw;top:11vh}
+  .project-copy h3{font-size:17vw}
+  .end{height:175vh}
+  .end-stage .end-building{width:120%;left:-10%}
+}
