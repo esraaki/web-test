@@ -35,7 +35,6 @@ function TimeOfDay(){
   const displayProgress=useRef(0);
   const rafRef=useRef(0);
   const [clock,setClock]=useState('06:00');
-  const [phase,setPhase]=useState('الصباح');
   const {scrollYProgress}=useScroll({target:ref,offset:['start start','end end']});
   const formatTime=p=>{const start=6*60,end=22*60,total=Math.round(start+(end-start)*p);return `${String(Math.floor(total/60)).padStart(2,'0')}:${String(total%60).padStart(2,'0')}`};
   const drawFrame=(index)=>{
@@ -64,7 +63,6 @@ function TimeOfDay(){
       const p=Math.max(0,Math.min(1,displayProgress.current));
       drawFrame(Math.round(p*(TIME_FRAME_COUNT-1)));
       setClock(formatTime(p));
-      setPhase(p<.23?'الصباح':p<.5?'الظهيرة':p<.72?'الغروب':p<.88?'الشفق':'الليل');
       rafRef.current=requestAnimationFrame(tick);
     };
     rafRef.current=requestAnimationFrame(tick);
@@ -74,6 +72,9 @@ function TimeOfDay(){
   const copyOpacity=useTransform(scrollYProgress,[0,.12,.7,.9],[1,1,.72,0]);
   const copyY=useTransform(scrollYProgress,[0,1],['0%','-18%']);
   const clockScale=useTransform(scrollYProgress,[0,1],[1,.94]);
+  const sunOpacity=useTransform(scrollYProgress,[0,.55,.78],[1,.85,0]);
+  const sunRotate=useTransform(scrollYProgress,[0,.78],[-18,24]);
+  const moonOpacity=useTransform(scrollYProgress,[.58,.82,1],[0,.65,1]);
   return <section className="time-section" ref={ref}>
     <div className="time-stage">
       <canvas ref={canvasRef} className="time-canvas" aria-label="تحوّل البيت من النهار إلى الليل"/>
@@ -83,11 +84,16 @@ function TimeOfDay(){
         <p>المكان لا يبدو بالطريقة نفسها مرتين. مرّر الوقت لترى كيف يعيد الضوء رسمه.</p>
       </motion.div>
       <motion.div className="time-clock" style={{scale:clockScale}} aria-live="polite">
-        <div className="time-clock-top"><span>{phase}</span><i/></div>
+        <div className="time-clock-top">
+          <div className="time-celestial" aria-hidden="true">
+            <motion.svg className="time-sun" style={{opacity:sunOpacity,rotate:sunRotate}} viewBox="0 0 32 32"><circle cx="16" cy="16" r="5.4"/><g><path d="M16 2.5v5M16 24.5v5M2.5 16h5M24.5 16h5M6.45 6.45l3.55 3.55M22 22l3.55 3.55M25.55 6.45L22 10M10 22l-3.55 3.55"/></g></motion.svg>
+            <motion.svg className="time-moon" style={{opacity:moonOpacity}} viewBox="0 0 32 32"><path d="M22.9 23.7A11.3 11.3 0 0 1 11.1 5.3a11.4 11.4 0 1 0 11.8 18.4Z"/></motion.svg>
+          </div>
+          <i/>
+        </div>
         <strong>{clock}</strong>
         <div className="time-range"><span>06:00</span><b><motion.i style={{scaleX:scrollYProgress}}/></b><span>22:00</span></div>
       </motion.div>
-      <div className="time-scroll-note"><span>مرّر الوقت</span><i>↓</i></div>
     </div>
   </section>
 }

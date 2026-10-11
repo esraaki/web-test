@@ -158,3 +158,29 @@ nav.scrolled .brand{width:82px;height:46px}
 @keyframes timeNudge{0%,100%{transform:translateY(-2px)}50%{transform:translateY(5px)}}
 @media(max-width:800px){.time-section{height:300vh}.time-copy{right:6vw;top:14vh;width:78vw}.time-copy h2{font-size:11vw}.time-copy p{width:72vw;font-size:12px}.time-clock{left:5vw;bottom:4vh;width:52vw;padding:14px 15px}.time-clock strong{font-size:12vw}.time-scroll-note{right:6vw;bottom:4.2vh}.time-canvas{object-position:center center}.time-vignette{background:linear-gradient(180deg,rgba(0,0,0,.32),transparent 50%,rgba(0,0,0,.3))}}
 @media(prefers-reduced-motion:reduce){.time-section{height:100vh}.time-scroll-note{display:none}.time-scroll-note i{animation:none}}
+
+/* V14 — refined day/night sequence + hierarchy fixes */
+.time-clock{left:auto;bottom:auto;right:3.5vw;top:4.5vh;transform-origin:right top;width:min(286px,26vw);padding:15px 18px 14px;background:rgba(7,9,10,.2)}
+.time-clock-top{direction:ltr;height:30px;gap:12px}
+.time-clock-top>i{height:1px;flex:1;background:rgba(255,255,255,.3)}
+.time-celestial{position:relative;width:30px;height:30px;flex:none}
+.time-celestial svg{position:absolute;inset:0;width:30px;height:30px;overflow:visible}
+.time-sun{fill:#ffc84b;stroke:#ffc84b;stroke-width:1.7;stroke-linecap:round;transform-origin:50% 50%;filter:drop-shadow(0 0 8px rgba(255,190,55,.2))}
+.time-sun circle{stroke:none}.time-sun path{fill:none}
+.time-moon{fill:#fff;filter:drop-shadow(0 0 8px rgba(255,255,255,.16))}
+.time-copy{top:31vh;right:4vw;width:min(480px,40vw)}
+.time-copy h2{font-size:clamp(34px,4vw,64px)}
+.time-scroll-note{display:none!important}
+.hero-word.hero-heading{height:auto;min-height:2.72em;padding:.22em 0 .34em;line-height:1.12;overflow:visible}
+.hero-heading .blind-slice{height:100%;padding:.08em 0 .12em;overflow:visible}
+.hero-line{height:auto;min-height:1.16em;line-height:1.12;overflow:visible;padding-block:.05em}
+.project-copy{gap:3.2vh}
+.project-outline{-webkit-text-stroke:1.25px rgba(255,255,255,.34)}
+@media(max-width:800px){
+  .time-clock{right:5vw;top:3.2vh;left:auto;bottom:auto;width:48vw;padding:12px 14px 11px}
+  .time-clock-top{height:26px}.time-celestial,.time-celestial svg{width:26px;height:26px}
+  .time-copy{right:6vw;top:27vh;width:78vw}
+  .hero-word.hero-heading{height:auto;min-height:2.9em;padding:.24em 0 .4em;line-height:1.16}
+  .hero-line{min-height:1.2em;line-height:1.16}
+  .project-copy{gap:3.7vh}
+}
