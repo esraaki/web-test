@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const main=fs.readFileSync(new URL('../src/main.jsx',import.meta.url),'utf8');
+const src=fs.readFileSync(new URL('../src/concepts.jsx',import.meta.url),'utf8');
+const css=fs.readFileSync(new URL('../src/concepts.css',import.meta.url),'utf8');
+test('homepage has temporary concepts tester and internal route',()=>{assert.match(main,/className="concept-tester"/);assert.match(main,/href="\/concepts"/);assert.match(main,/isConcepts/)});
+test('eight concepts exist in exact order',()=>{const names=['Assembly','Daylight','Enter','Site','Decisions','LivingSection','HumanScale','OneShot'];let at=-1;for(const n of names){const i=src.indexOf(`<${n}/>`);assert.ok(i>at,`${n} missing or out of order`);at=i}});
+test('concepts expose distinct interactions',()=>{assert.match(src,/useScroll/);assert.match(src,/onPointerMove/);assert.match(src,/onMouseEnter/);assert.match(src,/autoPlay muted loop/);assert.match(src,/section-drawing/)});
+test('concept page has return control and responsive styling',()=>{assert.match(src,/className="cx-back"/);assert.match(css,/@media\(max-width:800px\)/);assert.match(css,/prefers-reduced-motion/)});

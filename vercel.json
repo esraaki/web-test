@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/concepts",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/concepts/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
