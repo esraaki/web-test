@@ -343,36 +343,34 @@ nav.scrolled .brand{width:82px;height:46px}
   padding:0;
   overflow:visible!important;
 }
-.hero-content{margin-top:40px}
+.hero-content{margin-top:0px}
 .project-copy{
   right:5vw;
   width:max-content;
   max-width:90vw;
-  align-items:stretch;
+  align-items:flex-start;
   gap:32px;
   text-align:right;
 }
 .project-copy h3{
   width:max-content;
   max-width:90vw;
-  margin-right:0;
-  margin-left:0;
+  margin:0;
   text-align:right;
-  align-self:auto;
+  align-self:flex-start;
 }
 .project-copy .project-cta{
-  align-self:flex-end;
-  margin-right:0;
-  margin-left:0;
+  align-self:flex-start;
+  margin:0;
 }
 @media(max-width:800px){
   .hero-type{top:22vh}
   .hero-word.hero-heading{min-height:2.46em;padding-top:.66em;padding-bottom:.20em;line-height:.92}
   .hero-heading .hero-line{min-height:.96em;line-height:.92}
-  .hero-content{margin-top:40px}
-  .project-copy{right:6vw;gap:32px;align-items:stretch}
+  .hero-content{margin-top:0px}
+  .project-copy{right:6vw;gap:32px;align-items:flex-start}
   .project-copy h3{margin-right:0;margin-left:0}
-  .project-copy .project-cta{align-self:flex-end;margin-right:0;margin-left:0}
+  .project-copy .project-cta{align-self:flex-start;margin-right:0;margin-left:0}
 }
 
 
@@ -434,7 +432,7 @@ nav.scrolled .brand{width:82px;height:46px}
   .hero-word.hero-heading{min-height:2.34em;padding:.20em 0 .12em;line-height:.90}
   .hero-heading .blind-slice{inset:-.08em 0 -.08em;min-height:2.48em}
   .hero-heading .hero-line{min-height:.94em;line-height:.90;padding:.05em 0}
-  .hero-content{margin-top:40px}
+  .hero-content{margin-top:0px}
   .project-copy{right:6vw;gap:32px;align-items:flex-start}
   .project-copy h3,.project-copy .project-cta{align-self:flex-start;margin:0}
 }
