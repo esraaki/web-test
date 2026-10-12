@@ -293,3 +293,31 @@ nav.scrolled .brand{width:82px;height:46px}
   .passage h2{font-size:20vw}
   .end-copy h2{font-size:17vw}
 }
+
+/* V19 — screenshot-verified layout corrections */
+.hero-type{top:22vh}
+.hero-word.hero-heading{
+  min-height:2.68em;
+  padding-top:.52em;
+  padding-bottom:.34em;
+  overflow:visible!important;
+}
+.hero-heading .blind-slice,
+.hero-heading .hero-line{overflow:visible!important}
+.project-copy{
+  align-items:flex-start;
+  gap:6vh;
+  text-align:right;
+}
+.project-copy h3{width:auto;text-align:right;align-self:flex-start}
+.project-copy .project-cta{align-self:flex-start}
+.passage h2{font-size:clamp(68px,9.8vw,156px)}
+.end-copy h2{font-size:clamp(58px,8.2vw,128px)}
+@media(max-width:800px){
+  .hero-type{top:20vh}
+  .hero-word.hero-heading{min-height:2.78em;padding-top:.54em;padding-bottom:.34em;overflow:visible!important}
+  .project-copy{align-items:flex-start;gap:5vh}
+  .project-copy h3,.project-copy .project-cta{align-self:flex-start}
+  .passage h2{font-size:18vw}
+  .end-copy h2{font-size:15.5vw}
+}
