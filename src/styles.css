@@ -438,3 +438,39 @@ nav.scrolled .brand{width:82px;height:46px}
   .project-copy{right:6vw;gap:32px;align-items:flex-start}
   .project-copy h3,.project-copy .project-cta{align-self:flex-start;margin:0}
 }
+
+/* V22 — exact hero/project alignment requested */
+.hero-content{
+  margin-top:0 !important;
+}
+.project-copy{
+  right:5vw;
+  width:max-content;
+  max-width:90vw;
+  align-items:flex-end !important;
+  gap:32px !important;
+  direction:rtl;
+}
+.project-copy h3,
+.project-copy .project-cta{
+  align-self:flex-end !important;
+  margin-left:0 !important;
+  margin-right:0 !important;
+}
+.project-copy h3{
+  width:max-content !important;
+  max-width:90vw;
+  text-align:right;
+}
+@media(max-width:800px){
+  .hero-content{margin-top:0 !important}
+  .project-copy{
+    right:6vw;
+    width:max-content;
+    max-width:88vw;
+    align-items:flex-end !important;
+    gap:32px !important;
+  }
+  .project-copy h3,
+  .project-copy .project-cta{align-self:flex-end !important}
+}
