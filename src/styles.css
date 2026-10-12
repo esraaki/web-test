@@ -321,3 +321,56 @@ nav.scrolled .brand{width:82px;height:46px}
   .passage h2{font-size:18vw}
   .end-copy h2{font-size:15.5vw}
 }
+
+
+/* V20 — exact hero/project alignment */
+.hero-type{top:24vh}
+.hero-word.hero-heading{
+  min-height:2.30em;
+  padding-top:.62em;
+  padding-bottom:.18em;
+  line-height:.88;
+  overflow:visible!important;
+}
+.hero-heading .blind-slice{
+  inset:-.14em 0 -.10em;
+  overflow:visible!important;
+}
+.hero-heading .hero-line{
+  min-height:.92em;
+  line-height:.88;
+  margin-top:0;
+  padding:0;
+  overflow:visible!important;
+}
+.hero-content{margin-top:40px}
+.project-copy{
+  right:5vw;
+  width:max-content;
+  max-width:90vw;
+  align-items:stretch;
+  gap:32px;
+  text-align:right;
+}
+.project-copy h3{
+  width:max-content;
+  max-width:90vw;
+  margin-right:0;
+  margin-left:0;
+  text-align:right;
+  align-self:auto;
+}
+.project-copy .project-cta{
+  align-self:flex-end;
+  margin-right:0;
+  margin-left:0;
+}
+@media(max-width:800px){
+  .hero-type{top:22vh}
+  .hero-word.hero-heading{min-height:2.46em;padding-top:.66em;padding-bottom:.20em;line-height:.92}
+  .hero-heading .hero-line{min-height:.96em;line-height:.92}
+  .hero-content{margin-top:40px}
+  .project-copy{right:6vw;gap:32px;align-items:stretch}
+  .project-copy h3{margin-right:0;margin-left:0}
+  .project-copy .project-cta{align-self:flex-end;margin-right:0;margin-left:0}
+}
