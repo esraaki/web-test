@@ -259,3 +259,37 @@ nav.scrolled .brand{width:82px;height:46px}
   .hero-word.hero-heading{min-height:2.54em;padding-top:.28em;padding-bottom:.32em;line-height:.94}
   .hero-heading .hero-line{min-height:.98em;line-height:.94;margin-top:0;padding-left:0}
 }
+
+/* V18 — requested hierarchy/alignment refinements */
+.hero-type{top:17vh}
+.hero-word.hero-heading{
+  min-height:2.50em;
+  padding-top:.38em;
+  padding-bottom:.28em;
+  line-height:.90;
+}
+.hero-heading .blind-slice{overflow:visible}
+.hero-heading .hero-line{
+  min-height:.94em;
+  line-height:.90;
+  overflow:visible;
+}
+.project-copy{
+  align-items:flex-end;
+  gap:4.6vh;
+  text-align:right;
+}
+.project-copy h3{text-align:right;width:100%}
+.project-copy .project-cta{align-self:flex-end}
+.passage h2{font-size:clamp(76px,11vw,174px)}
+.end-copy h2{font-size:clamp(64px,9.2vw,142px)}
+
+@media(max-width:800px){
+  .hero-type{top:16vh}
+  .hero-word.hero-heading{min-height:2.62em;padding-top:.40em;padding-bottom:.30em;line-height:.94}
+  .hero-heading .hero-line{min-height:.98em;line-height:.94}
+  .project-copy{align-items:flex-end;gap:4vh}
+  .project-copy h3{text-align:right}
+  .passage h2{font-size:20vw}
+  .end-copy h2{font-size:17vw}
+}
