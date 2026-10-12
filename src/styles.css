@@ -374,3 +374,67 @@ nav.scrolled .brand{width:82px;height:46px}
   .project-copy h3{margin-right:0;margin-left:0}
   .project-copy .project-cta{align-self:flex-end;margin-right:0;margin-left:0}
 }
+
+
+/* V21 — screenshot-led hero + project geometry fix */
+.hero-type{
+  top:18vh;
+  right:4vw;
+  width:92vw;
+  overflow:visible;
+}
+.hero-word.hero-heading{
+  min-height:2.18em;
+  margin:0;
+  padding:.18em 0 .10em;
+  line-height:.86;
+  overflow:visible!important;
+}
+.hero-heading .blind-slice{
+  inset:-.08em 0 -.08em;
+  height:auto;
+  min-height:2.34em;
+  overflow:visible!important;
+}
+.hero-heading .hero-line{
+  display:block;
+  min-height:.90em;
+  line-height:.86;
+  margin:0;
+  padding:.05em 0;
+  overflow:visible!important;
+}
+.hero-content{
+  margin-top:40px;
+}
+.project-copy{
+  right:5vw;
+  width:auto;
+  max-width:none;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:32px;
+  direction:rtl;
+  text-align:right;
+}
+.project-copy h3{
+  width:auto;
+  max-width:none;
+  margin:0;
+  align-self:flex-start;
+  text-align:right;
+}
+.project-copy .project-cta{
+  align-self:flex-start;
+  margin:0;
+}
+@media(max-width:800px){
+  .hero-type{top:18vh;right:6vw;width:88vw}
+  .hero-word.hero-heading{min-height:2.34em;padding:.20em 0 .12em;line-height:.90}
+  .hero-heading .blind-slice{inset:-.08em 0 -.08em;min-height:2.48em}
+  .hero-heading .hero-line{min-height:.94em;line-height:.90;padding:.05em 0}
+  .hero-content{margin-top:40px}
+  .project-copy{right:6vw;gap:32px;align-items:flex-start}
+  .project-copy h3,.project-copy .project-cta{align-self:flex-start;margin:0}
+}
