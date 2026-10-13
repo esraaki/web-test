@@ -6,16 +6,16 @@ import './styles.css';
 const IMG={
  hero:'https://mavilongevity.com/images/properties/mavi-r3-50.jpg',
  courtyard:'https://static.spacecrafted.com/fa3c03d2f10d42bfb8bfdd0889cf1089/i/e9f952ad1909484ea69dcb9385c7b0ee/1/GCuCv726gZycFxatRCb7iU/ES11.jpg',
- plan:'/assets/compare-sketch.png',
+ plan:'/assets/compare-sketch.webp',
  house:'https://images.divisare.com/images/f_auto%2Cq_auto%2Cw_auto/v1627307021/llnyyh02bhiawbk3cxtx/grupo-studio-gonzalo-viramonte-casa-si.jpg',
  desert:'https://morphome.app/assets/renders/concrete-desert-house.jpg',
  light:'https://www.mlarquitectura.cat/wp-content/uploads/2024/05/2020-07-31-09.41.21-scaled.jpg',
  shadow:'https://images.divisare.com/images/c_limit%2Cf_auto%2Ch_2000%2Cq_auto%2Cw_3000/v1468257182/w72llzpljwrj1rrxdjsw/bernardo-rosello-ramiro-sosa-house-in-palihue.jpg',
  material:'https://assets.zyrosite.com/cdn-cgi/image/format%3Dauto%2Cw%3D1600%2Ch%3D1600%2Cfit%3Dcrop/AwvMxLX1xRFrbD2m/trawertyn-na-elewacje-classico-jasny-kamien-naturalny-wloski-mxBZW2bREKCrJNyx.jpeg',
- sky:'/assets/footer-sky-v11.png',
- building:'/assets/footer-building-v11.png',
- compareSketch:'/assets/compare-sketch.png',
- compareRender:'/assets/compare-render.png',
+ sky:'/assets/footer-sky-v11.webp',
+ building:'/assets/footer-building-v11.webp',
+ compareSketch:'/assets/compare-sketch.webp',
+ compareRender:'/assets/compare-render.webp',
  logo:'/assets/logo-athar.png',
  projectWadi:'https://www.prostoria.com/dnl5jhinu/image/upload/c_limit%2Cw_1800/f_webp/q_auto/v1/courtyard_house_000_kks5s6rrw5ycdnhjctqo_jpg?_a=BAVAZGE70',
  projectCourtyard:'https://images.squarespace-cdn.com/content/v1/5b9048065417fcb37adf73aa/1690296901679-YU4G68W9SWYCK9REUSKQ/image.jpg?format=1500w',
@@ -26,7 +26,7 @@ const IMG={
  filmCourt:'https://coohom-biz-sg-s3.coohom.com/ins/static/case/planta-casa-formato-l-exemplo-1777387205853085500.jpg?processFlag=true&x-oss-process=image%2Fformat%2Cwebp',
  filmConcrete:'https://architectureprizecom.s3-us-west-2.amazonaws.com/uploads/87393/22-8441-20/full/f0a5fd90cbdb8d8be94668b147ffa0b2.jpg'
 };
-const HERO_VIDEO='https://videos.pexels.com/video-files/38675652/16428547_3840_2160_30fps.mp4';
+const HERO_VIDEO='/assets/hero-optimized.mp4';
 const TIME_FRAME_COUNT=90;
 const timeFrameSrc=i=>`/assets/day-night-frames/frame-${String(i+1).padStart(3,'0')}.webp`;
 
@@ -41,13 +41,13 @@ const L={
  ar:{
   menu:'القائمة',close:'إغلاق',open:'فتح',projects:'المشاريع',studio:'الاستوديو',method:'المنهج',contact:'تواصل معنا',menuNote:'عمارة تُقرأ بالحركة، والضوء، والفراغ.',
   hero1:'نصمّم أثراً',hero2:'يبقى.',heroSub:'نصمّم بيوتاً معاصرة تبدأ من طريقة العيش، وتتشكل حول الضوء والمادة والمكان.',heroCta:'استكشف المشاريع',
-  formH1:'من الأرض،',formH2:'يتشكّل البيت.',formP:'نبدأ بما يحتاجه المكان فعلاً، ثم نبني الكتلة والفتحات والتفاصيل حول الضوء والحركة والحياة اليومية.',
+  formH1:'البيت يبدأ',formH2:'من المكان.',formP:'نبدأ بما يحتاجه المكان فعلاً، ثم نبني الكتلة والفتحات والتفاصيل حول الضوء والحركة والحياة اليومية.',
   timeH1:'الضوء',timeH2:'يعيد رسم البيت.',timeP:'العمارة لا تُرى بالطريقة نفسها مرتين. مرّر الوقت لترى كيف يعيد الضوء رسم الكتلة والفراغ.',
   projectNames:['دار الوادي','بيت الساحة','دار النور'],viewProject:'شاهد المشروع',
   wordsH:'ما يصنع حضور المكان',wordsP:'لا نتعامل معها كطبقات تجميلية. الضوء يحدد الإيقاع، والظل يصنع العمق، والمادة تمنح المكان حضوره وذاكرته.',words:['الضوء','الظل','المادة'],show:'عرض',
   passage:['حدود','تفتح،','ولا تفصل.'],passageP:'نصمّم الحدود لتعمل في الاتجاهين: تحمي الداخل، وتفتح البيت على السماء والحديقة والضوء.',
   fragH:['كل خطوة','تغيّر المشهد.'],frag1:'نصمّم البيت كسلسلة من التجارب، لا كواجهة واحدة: لحظة الوصول، العبور، الالتفاف، والانفتاح على الخارج.',frag2:'تتغيّر القراءة مع كل خطوة وكل ساعة. لذلك نختبر الكتلة والفتحات والمواد كجزء من مشهد يتحرك معك.',
-  compareH:['الفكرة نفسها.','من الخط إلى الحجر.'],compareP:'نختبر النِّسب والفتحات والظل قبل أن تصبح الفكرة حجراً وزجاجاً. اسحب الخط لترى كيف تبقى لغة المشروع واضحة من القرار الأول حتى المشهد النهائي.',plan:'المسقط',scene:'المشهد',move:'حرّك',
+  compareH:['من الخط،','إلى الفراغ،','إلى الواقع.'],compareP:'نختبر النِّسب والفتحات والظل قبل أن تصبح الفكرة حجراً وزجاجاً. اسحب الخط لترى كيف تبقى لغة المشروع واضحة من القرار الأول حتى المشهد النهائي.',plan:'المسقط',scene:'المشهد',move:'حرّك',
   endH:['بيتٌ يبقى','في الذاكرة.'],seeProjects:'مشاهدة المشاريع ↗',contactUs:'تواصل معنا ↗',
   projectTitle:'دار الوادي',projectKicker:'منزل خاص · 2026',projectIntro:'بيت هادئ يتبع امتداد الأرض، ويجمع بين الظل العميق، الحجر الفاتح، وانفتاح محسوب على الحديقة.',projectStoryH:'بيت يتنفس مع الضوء.',projectStoryP:'صُمّمت دار الوادي حول إيقاع يومي بسيط: مساحات مشتركة مفتوحة، انتقالات واضحة بين الداخل والخارج، وواجهات تحمي الخصوصية من دون أن تعزل البيت عن محيطه.',projectFact1:'النوع',projectFact1v:'سكن خاص',projectFact2:'المساحة',projectFact2v:'420 م²',projectFact3:'الحالة',projectFact3v:'تصميم مفاهيمي',backHome:'العودة للرئيسية',
   studioTitle:'أثر. عمارة تبدأ من الإنسان.',studioIntro:'أثر استوديو معماري مستقل يركز على البيوت المعاصرة والمساحات السكنية الهادئة. نعمل من الفكرة الأولى حتى اللغة البصرية النهائية للمشروع.',studioH:'منهجنا',studioP:'نبدأ بالاحتياج والموقع، ثم نختبر الكتلة والحركة والضوء قبل التفاصيل. النتيجة ليست أسلوباً ثابتاً، بل بيتاً واضحاً في فكرته ومريحاً في حياته اليومية.',contactH:'تواصل معنا.',contactP:'إذا كنت تخطط لبيت جديد أو تريد إعادة التفكير في مساحة قائمة، أرسل لنا نبذة قصيرة عن المشروع.',email:'hello@athar.studio',phone:'+20 (0) 100 000 0000',location:'القاهرة · مصر',footerNote:'أثر — استوديو معماري مستقل'
@@ -85,7 +85,7 @@ const otherLocalePath=()=>{
 
 function Cursor(){const [p,setP]=useState({x:-100,y:-100});const [mode,setMode]=useState('');const [seen,setSeen]=useState(false);useEffect(()=>{const m=e=>{setSeen(true);setP({x:e.clientX,y:e.clientY})};const o=e=>setMode(e.target.closest('[data-cursor]')?.dataset.cursor||'');window.addEventListener('mousemove',m);window.addEventListener('mouseover',o);return()=>{window.removeEventListener('mousemove',m);window.removeEventListener('mouseover',o)}},[]);return <motion.div className={'cursor '+(seen?'seen ':'')+(mode?'active':'')} animate={{x:p.x-20,y:p.y-20}} transition={{type:'spring',damping:28,stiffness:450,mass:.2}}><i/><b>{mode}</b></motion.div>}
 function Nav(){const [menuOpen,setMenuOpen]=useState(false);const [scrolled,setScrolled]=useState(false);useEffect(()=>{const onScroll=()=>setScrolled(window.scrollY>72);onScroll();window.addEventListener('scroll',onScroll,{passive:true});return()=>window.removeEventListener('scroll',onScroll)},[]);const links=[[T.projects,`${homePath}#projects`],[T.studio,studioPath],[T.method,`${homePath}#approach`],[T.contact,`${studioPath}#contact`]];return <><nav className={scrolled?'scrolled':''}><a className="brand" href={homePath} aria-label="ATHAR"><img className="brand-logo" src={IMG.logo} alt="ATHAR"/></a><div className="nav-actions"><a className="lang-switch" href={otherLocalePath()}>{isEn?'AR':'EN'}</a><button className="menu-trigger" data-cursor={menuOpen?T.close:T.open} onClick={()=>setMenuOpen(v=>!v)}><span>{menuOpen?'×':'＋'}</span> {T.menu}</button></div></nav><AnimatePresence>{menuOpen&&<motion.div className="menu-overlay" initial={{clipPath:'inset(0 0 100% 0)'}} animate={{clipPath:'inset(0 0 0% 0)'}} exit={{clipPath:'inset(0 0 100% 0)'}} transition={{duration:.7,ease:[.76,0,.24,1]}}><div className="menu-grid"/><div className="menu-ghost">ATHAR</div><div className="menu-links">{links.map((x,i)=><motion.a key={x[0]} href={x[1]} data-cursor="↗" initial={{y:80,opacity:0}} animate={{y:0,opacity:1}} transition={{delay:.18+i*.08,duration:.6}}><span>{String(i+1).padStart(2,'0')}</span>{x[0]}<i>↗</i></motion.a>)}</div><p className="menu-note">{T.menuNote}</p></motion.div>}</AnimatePresence></>}
-function Hero(){const ref=useRef();const {scrollYProgress}=useScroll({target:ref,offset:['start start','end start']});const scale=useTransform(scrollYProgress,[0,1],[1,1.06]);const typeY=useTransform(scrollYProgress,[0,1],['0%','-1.5%']);return <section className="hero" ref={ref}><motion.video className="hero-video" autoPlay muted loop playsInline src={HERO_VIDEO} style={{scale}} initial={{opacity:0}} animate={{opacity:1}} transition={{duration:2.1,delay:.1,ease:'easeOut'}}/><motion.div className="hero-darkness" initial={{opacity:1}} animate={{opacity:0}} transition={{duration:2.4,ease:[.4,0,.2,1]}}/><div className="hero-grid"/><motion.div className="hero-type" style={{y:typeY}}><motion.h1 className="hero-heading-clean" initial={{y:34,opacity:0}} animate={{y:0,opacity:1}} transition={{delay:.3,duration:.9,ease:[.16,1,.3,1]}}><span>{T.hero1}</span><span>{T.hero2}</span></motion.h1><motion.div className="hero-content" initial={{y:24,opacity:0}} animate={{y:0,opacity:1}} transition={{delay:1.05,duration:.75}}><p className="hero-sub">{T.heroSub}</p><a className="hero-cta" href="#projects" data-cursor="↗">{T.heroCta} <span>↗</span></a></motion.div></motion.div></section>}
+function Hero(){const ref=useRef();const {scrollYProgress}=useScroll({target:ref,offset:['start start','end start']});const scale=useTransform(scrollYProgress,[0,1],[1,1.06]);const typeY=useTransform(scrollYProgress,[0,1],['0%','-1.5%']);return <section className="hero" ref={ref}><motion.video className="hero-video" autoPlay muted loop playsInline preload="metadata" src={HERO_VIDEO} style={{scale}} initial={{opacity:0}} animate={{opacity:1}} transition={{duration:2.1,delay:.1,ease:'easeOut'}}/><motion.div className="hero-darkness" initial={{opacity:1}} animate={{opacity:0}} transition={{duration:2.4,ease:[.4,0,.2,1]}}/><div className="hero-grid"/><motion.div className="hero-type" style={{y:typeY}}><motion.h1 className="hero-heading-clean" initial={{y:34,opacity:0}} animate={{y:0,opacity:1}} transition={{delay:.3,duration:.9,ease:[.16,1,.3,1]}}><span>{T.hero1}</span><span>{T.hero2}</span></motion.h1><motion.div className="hero-content" initial={{y:24,opacity:0}} animate={{y:0,opacity:1}} transition={{delay:1.05,duration:.75}}><p className="hero-sub">{T.heroSub}</p><a className="hero-cta" href="#projects" data-cursor="↗">{T.heroCta} <span>↗</span></a></motion.div></motion.div></section>}
 function FormationSection(){
   const sectionRef=useRef(null);
   const videoRef=useRef(null);
@@ -111,7 +111,7 @@ function FormationSection(){
         <p>{T.formP}</p>
       </motion.div>
       <motion.div className="formation-media" initial={{opacity:0,y:34}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.35}} transition={{duration:.9,delay:.08,ease:[.16,1,.3,1]}}>
-        <video ref={videoRef} src="/assets/house-formation.mp4" muted playsInline preload="auto" aria-label="مراحل تشكّل البيت"/>
+        <video ref={videoRef} src="/assets/house-formation.mp4" muted playsInline preload="none" aria-label="مراحل تشكّل البيت"/>
       </motion.div>
     </div>
   </section>
@@ -150,11 +150,16 @@ function TimeOfDay(){
   };
   useEffect(()=>{
     let alive=true;
-    framesRef.current=Array.from({length:TIME_FRAME_COUNT},(_,i)=>{
-      const img=new Image();img.decoding='async';img.src=timeFrameSrc(i);
-      img.decode?.().catch(()=>{}).finally(()=>{if(alive&&i===0)drawScrubFrame(0,true)});
-      return img;
-    });
+    framesRef.current=Array.from({length:TIME_FRAME_COUNT},()=>null);
+    const first=new Image();first.decoding='async';first.src=timeFrameSrc(0);
+    first.decode?.().catch(()=>{}).finally(()=>{if(alive)drawScrubFrame(0,true)});framesRef.current[0]=first;
+    let sequenceLoaded=false;
+    const loadSequence=()=>{
+      if(sequenceLoaded)return;sequenceLoaded=true;
+      for(let i=1;i<TIME_FRAME_COUNT;i++){const img=new Image();img.decoding='async';img.src=timeFrameSrc(i);framesRef.current[i]=img;}
+    };
+    const preloadObserver=new IntersectionObserver(([entry])=>{if(entry.isIntersecting){loadSequence();preloadObserver.disconnect();}},{rootMargin:'1200px 0px'});
+    if(ref.current)preloadObserver.observe(ref.current);
     const resize=()=>drawScrubFrame(displayProgress.current,true);
     window.addEventListener('resize',resize,{passive:true});
     const tick=()=>{
@@ -167,7 +172,7 @@ function TimeOfDay(){
       rafRef.current=requestAnimationFrame(tick);
     };
     rafRef.current=requestAnimationFrame(tick);
-    return()=>{alive=false;cancelAnimationFrame(rafRef.current);window.removeEventListener('resize',resize)};
+    return()=>{alive=false;preloadObserver.disconnect();cancelAnimationFrame(rafRef.current);window.removeEventListener('resize',resize)};
   },[]);
   useEffect(()=>scrollYProgress.on('change',p=>{targetProgress.current=Math.max(0,Math.min(1,p))}),[scrollYProgress]);
   const copyOpacity=useTransform(scrollYProgress,[0,.12,.7,.9],[1,1,.72,0]);
@@ -203,7 +208,7 @@ function Projects(){const ref=useRef();const {scrollYProgress}=useScroll({target
 function Words(){const [active,setActive]=useState(0);const words=[[T.words[0],IMG.light],[T.words[1],IMG.shadow],[T.words[2],IMG.material]];return <section className="words" id="approach"><motion.div key={active} className="words-bg" initial={{opacity:0,scale:1.06}} animate={{opacity:.72,scale:1}} transition={{duration:.7}} style={{backgroundImage:`url(${words[active][1]})`}}/><div className="words-intro"><h2>{T.wordsH}</h2><p>{T.wordsP}</p></div><div className="word-list">{words.map((w,i)=><button onMouseEnter={()=>setActive(i)} className={active===i?'on':''} key={w[0]} data-cursor={T.show}>{w[0]}<i>↗</i></button>)}</div></section>}
 function Passage(){const ref=useRef();const {scrollYProgress}=useScroll({target:ref,offset:['start end','end start']});const clip=useTransform(scrollYProgress,[.08,.48],['inset(18% 47% 18% 47%)','inset(0% 0% 0% 0%)']);const x=useTransform(scrollYProgress,[0,.65],['10%','-8%']);return <section className="passage" ref={ref}><div className="passage-base" style={{backgroundImage:`url(${IMG.plan})`}}/><motion.div className="passage-photo" style={{clipPath:clip,backgroundImage:`url(${IMG.house})`}}/><motion.h2 style={{x}}>{T.passage[0]}<br/>{T.passage[1]}<br/>{T.passage[2]}</motion.h2><div className="passage-line"/><p>{T.passageP}</p></section>}
 function Fragments(){const ref=useRef();const {scrollYProgress}=useScroll({target:ref,offset:['start end','end start']});const x1=useTransform(scrollYProgress,[0,1],['-8%','18%']);const x2=useTransform(scrollYProgress,[0,1],['14%','-15%']);return <section className="fragments" ref={ref}><div className="fragment-title"><h2>{T.fragH[0]}<br/>{T.fragH[1]}</h2><div className="fragment-copy"><p>{T.frag1}</p><p>{T.frag2}</p></div></div><motion.div className="film-row row-one" style={{x:x1}}>{[IMG.filmStair,IMG.filmInterior,IMG.filmShadow,IMG.filmCourt].map((im,i)=><div className="film" key={i}><img src={im}/></div>)}</motion.div><motion.div className="film-row row-two" style={{x:x2}}>{[IMG.filmConcrete,IMG.projectWadi,IMG.projectLight].map((im,i)=><div className="film wide" key={i}><img src={im}/></div>)}</motion.div></section>}
-function PlanToSpace(){const ref=useRef();const [split,setSplit]=useState(52);const move=e=>{const r=ref.current?.getBoundingClientRect();if(!r)return;setSplit(Math.max(8,Math.min(92,((e.clientX-r.left)/r.width)*100)))};return <section className="compare-section"><div className="compare-copy"><h2>{T.compareH[0]}<br/>{T.compareH[1]}</h2><p>{T.compareP}</p></div><div ref={ref} className="compare-stage" onPointerMove={move} data-cursor={T.move}><div className="compare-built" style={{backgroundImage:`url(${IMG.compareRender})`}}/><div className="compare-plan" style={{clipPath:`inset(0 ${100-split}% 0 0)`,backgroundImage:`url(${IMG.compareSketch})`}}/><div className="compare-handle" style={{left:`${split}%`}}><span>↔</span></div><div className="compare-label plan-label">{T.plan}</div><div className="compare-label built-label">{T.scene}</div></div></section>}
+function PlanToSpace(){const ref=useRef();const [split,setSplit]=useState(52);const move=e=>{const r=ref.current?.getBoundingClientRect();if(!r)return;setSplit(Math.max(8,Math.min(92,((e.clientX-r.left)/r.width)*100)))};return <section className="compare-section"><div className="compare-copy"><h2>{T.compareH.map((line,i)=><React.Fragment key={line}>{i>0&&<br/>}{line}</React.Fragment>)}</h2><p>{T.compareP}</p></div><div ref={ref} className="compare-stage" onPointerMove={move} data-cursor={T.move}><div className="compare-built" style={{backgroundImage:`url(${IMG.compareRender})`}}/><div className="compare-plan" style={{clipPath:`inset(0 ${100-split}% 0 0)`,backgroundImage:`url(${IMG.compareSketch})`}}/><div className="compare-handle" style={{left:`${split}%`}}><span>↔</span></div><div className="compare-label plan-label">{T.plan}</div><div className="compare-label built-label">{T.scene}</div></div></section>}
 function End(){const ref=useRef();const {scrollYProgress}=useScroll({target:ref,offset:['start end','end end']});const buildingY=useTransform(scrollYProgress,[0,.58,1],['105%','5%','0%']);const buildingScale=useTransform(scrollYProgress,[0,.75,1],[.97,1,1]);const copyY=useTransform(scrollYProgress,[0,1],['7%','0%']);return <section className="end" ref={ref}><div className="end-stage"><img className="end-sky-img" src={IMG.sky} alt=""/><motion.img className="end-building" src={IMG.building} alt="" style={{y:buildingY,scale:buildingScale}}/><motion.div className="end-copy" style={{y:copyY}}><h2>{T.endH[0]}<br/>{T.endH[1]}</h2></motion.div><div className="end-links"><a href={`${homePath}#projects`} data-cursor="↗">{T.seeProjects}</a><a href={`${studioPath}#contact`} data-cursor="↗">{T.contactUs}</a></div></div></section>}
 function InternalFooter(){return <footer className="internal-footer"><span>{T.footerNote}</span><div><a href={homePath}>{T.backHome}</a><a href={studioPath}>{T.contact}</a></div></footer>}
 function ProjectPage({slug}){const base=PROJECTS[slug]||PROJECTS['wadi-house'];const p=base[locale];return <div className="internal-page"><Cursor/><Nav/><main><section className="project-page-hero" style={{backgroundImage:`url(${base.image})`}}><div className="internal-shade"/><div className="project-page-title"><p>{p.kicker}</p><h1>{p.title}</h1></div></section><section className="project-page-intro"><p>{p.intro}</p><div className="project-facts"><div><span>{T.projectFact1}</span><b>{T.projectFact1v}</b></div><div><span>{T.projectFact2}</span><b>{p.area}</b></div><div><span>{T.projectFact3}</span><b>{T.projectFact3v}</b></div></div></section><section className="project-page-story"><div className="story-image" style={{backgroundImage:`url(${base.storyImage})`}}/><div className="story-copy"><h2>{p.storyH}</h2><p>{p.storyP}</p><a href={homePath}>{T.backHome} ↗</a></div></section></main><InternalFooter/></div>}

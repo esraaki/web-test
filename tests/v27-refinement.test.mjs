@@ -16,7 +16,7 @@ test('internal pages include compact footer and contact page prioritizes phone a
 });
 
 test('English layout has explicit LTR positional overrides and display font',()=>{
-  assert.match(css,/family=Syne/);
+  assert.match(css,/family=IBM\+Plex\+Sans/);
   assert.match(css,/\.locale-en \.formation-inner\s*\{[^}]*grid-template-areas:"copy media"/s);
   assert.match(css,/\.locale-en \.time-copy\s*\{[^}]*left:4vw[^}]*right:auto/s);
   assert.match(css,/\.locale-en \.time-clock\s*\{[^}]*right:3\.5vw[^}]*left:auto/s);
