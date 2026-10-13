@@ -18,7 +18,6 @@ const IMG={
  compareRender:'/assets/compare-render.png',
  logo:'/assets/logo-athar.png'
 };
-const projects=[['01',T.projectNames[0],IMG.hero],['02',T.projectNames[1],IMG.courtyard],['03',T.projectNames[2],IMG.desert]];
 const HERO_VIDEO='https://videos.pexels.com/video-files/38675652/16428547_3840_2160_30fps.mp4';
 const TIME_FRAME_COUNT=90;
 const timeFrameSrc=i=>`/assets/day-night-frames/frame-${String(i+1).padStart(3,'0')}.webp`;
@@ -60,6 +59,7 @@ const L={
  }
 };
 const T=L[locale];
+const projects=[['01',T.projectNames[0],IMG.hero],['02',T.projectNames[1],IMG.courtyard],['03',T.projectNames[2],IMG.desert]];
 const localPath=(ar,en)=>isEn?en:ar;
 const homePath=isEn?'/en':'/';
 const projectPath=isEn?'/en/project/wadi-house':'/project/wadi-house';
