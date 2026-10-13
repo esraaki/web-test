@@ -56,7 +56,7 @@ const L={
   menu:'Menu',close:'Close',open:'Open',projects:'Projects',studio:'Studio',method:'Approach',contact:'Contact',menuNote:'Architecture shaped by movement, light and space.',
   hero1:'We design spaces',hero2:'that stay with you.',heroSub:'Contemporary homes shaped around the way you live — with light, material and place doing the quiet work.',heroCta:'Explore projects',
   formH1:'From the ground,',formH2:'a home takes shape.',formP:'We begin with what the place truly needs, then shape mass, openings and detail around light, movement and everyday life.',
-  timeH1:'Light',timeH2:'redraws the house.',timeP:'Architecture never looks exactly the same twice. Move through the day and watch light redraw mass and space.',
+  timeH1:'Light Redraws',timeH2:'The House.',timeP:'Architecture never looks exactly the same twice. Move through the day and watch light redraw mass and space.',
   projectNames:['Wadi House','Courtyard House','House of Light'],viewProject:'View project',
   wordsH:'What gives a place presence',wordsP:'We do not treat them as decorative layers. Light sets the rhythm, shadow creates depth, and material gives a place its presence and memory.',words:['Light','Shadow','Material'],show:'View',
   passage:['Boundaries','that open,','not divide.'],passageP:'We design boundaries to work both ways: protecting the interior while opening the home to sky, garden and light.',

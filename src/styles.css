@@ -794,3 +794,21 @@ nav.scrolled .brand{width:82px;height:46px}
   .locale-en .passage p{left:auto;right:6vw;bottom:7vh;text-align:left}
   .locale-ar .fragment-copy{transform:none}
 }
+
+
+/* V30 — final day/night + fragments alignment polish */
+@media(min-width:801px){
+  /* Treat the clock and copy as one horizontal composition, lower than the top edge. */
+  .time-copy{top:22vh}
+  .time-clock{top:22vh;bottom:auto}
+  .locale-en .time-copy{top:22vh}
+  .locale-en .time-clock{top:22vh}
+
+  /* Arabic image-rows intro: quieter title, copy kept well clear on the left. */
+  .locale-ar .fragment-title h2{font-size:clamp(58px,7.2vw,114px);line-height:1.02}
+  .locale-ar .fragment-copy{transform:translateX(-13vw)}
+
+  /* English day/night reads naturally left-to-right and keeps the authored two-line break. */
+  .locale-en .time-copy h2{text-align:left;white-space:nowrap;font-size:clamp(50px,5.5vw,90px);line-height:1.03}
+  .locale-en .time-copy p{font-size:clamp(15px,1.15vw,18px);font-weight:600;line-height:1.8;color:rgba(255,255,255,.92)}
+}
