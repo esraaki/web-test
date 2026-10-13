@@ -27,6 +27,36 @@ const timeFrameSrc=i=>`/assets/day-night-frames/frame-${String(i+1).padStart(3,'
 function Cursor(){const [p,setP]=useState({x:-100,y:-100});const [mode,setMode]=useState('');const [seen,setSeen]=useState(false);useEffect(()=>{const m=e=>{setSeen(true);setP({x:e.clientX,y:e.clientY})};const o=e=>setMode(e.target.closest('[data-cursor]')?.dataset.cursor||'');window.addEventListener('mousemove',m);window.addEventListener('mouseover',o);return()=>{window.removeEventListener('mousemove',m);window.removeEventListener('mouseover',o)}},[]);return <motion.div className={'cursor '+(seen?'seen ':'')+(mode?'active':'')} animate={{x:p.x-20,y:p.y-20}} transition={{type:'spring',damping:28,stiffness:450,mass:.2}}><i/><b>{mode}</b></motion.div>}
 function Nav(){const [menuOpen,setMenuOpen]=useState(false);const [scrolled,setScrolled]=useState(false);useEffect(()=>{const onScroll=()=>setScrolled(window.scrollY>72);onScroll();window.addEventListener('scroll',onScroll,{passive:true});return()=>window.removeEventListener('scroll',onScroll)},[]);return <><nav className={scrolled?'scrolled':''}><a className="brand" aria-label="أثر"><img className="brand-logo" src={IMG.logo} alt="أثر"/></a><button className="menu-trigger" data-cursor={menuOpen?'إغلاق':'فتح'} onClick={()=>setMenuOpen(v=>!v)}><span>{menuOpen?'×':'＋'}</span> القائمة</button></nav><AnimatePresence>{menuOpen&&<motion.div className="menu-overlay" initial={{clipPath:'inset(0 0 100% 0)'}} animate={{clipPath:'inset(0 0 0% 0)'}} exit={{clipPath:'inset(0 0 100% 0)'}} transition={{duration:.7,ease:[.76,0,.24,1]}}><div className="menu-grid"/><div className="menu-ghost">أثر</div><div className="menu-links">{['المشاريع','الاستوديو','المنهج','تواصل معنا'].map((x,i)=><motion.a key={x} href="#" data-cursor="↗" initial={{y:80,opacity:0}} animate={{y:0,opacity:1}} transition={{delay:.18+i*.08,duration:.6}}><span>٠{i+1}</span>{x}<i>↗</i></motion.a>)}</div><p className="menu-note">عمارة تُقرأ بالحركة، والضوء، والفراغ.</p></motion.div>}</AnimatePresence></>}
 function Hero(){const ref=useRef();const {scrollYProgress}=useScroll({target:ref,offset:['start start','end start']});const scale=useTransform(scrollYProgress,[0,1],[1,1.06]);const typeY=useTransform(scrollYProgress,[0,1],['0%','-1.5%']);return <section className="hero" ref={ref}><motion.video className="hero-video" autoPlay muted loop playsInline src={HERO_VIDEO} style={{scale}} initial={{opacity:0}} animate={{opacity:1}} transition={{duration:2.1,delay:.1,ease:'easeOut'}}/><motion.div className="hero-darkness" initial={{opacity:1}} animate={{opacity:0}} transition={{duration:2.4,ease:[.4,0,.2,1]}}/><div className="hero-grid"/><motion.div className="hero-type" style={{y:typeY}}><motion.h1 className="hero-heading-clean" initial={{y:34,opacity:0}} animate={{y:0,opacity:1}} transition={{delay:.3,duration:.9,ease:[.16,1,.3,1]}}><span>نصمّم أثراً</span><span>يبقى.</span></motion.h1><motion.div className="hero-content" initial={{y:24,opacity:0}} animate={{y:0,opacity:1}} transition={{delay:1.05,duration:.75}}><p className="hero-sub">نحوّل الفكرة إلى بيتٍ واضح، هادئ، ومصمّم حول الضوء والحياة اليومية.</p><a className="hero-cta" href="#projects" data-cursor="↗">استكشف المشاريع <span>↗</span></a></motion.div></motion.div></section>}
+function FormationSection(){
+  const sectionRef=useRef(null);
+  const videoRef=useRef(null);
+  const hasPlayed=useRef(false);
+  useEffect(()=>{
+    const section=sectionRef.current;
+    const video=videoRef.current;
+    if(!section||!video)return;
+    const observer=new IntersectionObserver(([entry])=>{
+      if(entry.isIntersecting&&!hasPlayed.current){
+        hasPlayed.current=true;
+        video.play().catch(()=>{});
+        observer.disconnect();
+      }
+    },{threshold:.38});
+    observer.observe(section);
+    return()=>observer.disconnect();
+  },[]);
+  return <section className="formation-section" ref={sectionRef} aria-labelledby="formation-title">
+    <div className="formation-inner">
+      <motion.div className="formation-copy" initial={{opacity:0,y:28}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.55}} transition={{duration:.75,ease:[.16,1,.3,1]}}>
+        <h2 id="formation-title">البيت<br/>يتشكّل حولك.</h2>
+        <p>من قاعدةٍ بسيطة، ترتفع الكتل وتستقرّ الفتحات والتفاصيل في مكانها، حتى يكتمل البيت كما تخيّلناه.</p>
+      </motion.div>
+      <motion.div className="formation-media" initial={{opacity:0,y:34}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.35}} transition={{duration:.9,delay:.08,ease:[.16,1,.3,1]}}>
+        <video ref={videoRef} src="/assets/house-formation.mp4" muted playsInline preload="auto" aria-label="مراحل تشكّل البيت"/>
+      </motion.div>
+    </div>
+  </section>
+}
 function TimeOfDay(){
   const ref=useRef();
   const canvasRef=useRef();
@@ -116,6 +146,6 @@ function Passage(){const ref=useRef();const {scrollYProgress}=useScroll({target:
 function Fragments(){const ref=useRef();const {scrollYProgress}=useScroll({target:ref,offset:['start end','end start']});const x1=useTransform(scrollYProgress,[0,1],['-8%','18%']);const x2=useTransform(scrollYProgress,[0,1],['14%','-15%']);return <section className="fragments" ref={ref}><div className="fragment-title"><h2>المشهد<br/>لا يقف ساكناً.</h2><div className="fragment-copy"><p>العمارة تتغيّر مع كل خطوة، وكل ساعة، وكل زاوية نظر. ما نراه ليس صورة ثابتة، بل علاقة مستمرة بين الكتلة والضوء والحركة.</p><p>لهذا نقرأ المكان كسلسلة من المشاهد: اقتراب، عبور، ظلّ يتبدّل، ومادة تكشف تفاصيلها كلما اقتربنا منها.</p></div></div><motion.div className="film-row row-one" style={{x:x1}}>{[IMG.courtyard,IMG.material,IMG.desert,IMG.plan].map((im,i)=><div className="film" key={i}><img src={im}/></div>)}</motion.div><motion.div className="film-row row-two" style={{x:x2}}>{[IMG.hero,IMG.house,IMG.courtyard].map((im,i)=><div className="film wide" key={i}><img src={im}/></div>)}</motion.div></section>}
 function PlanToSpace(){const ref=useRef();const [split,setSplit]=useState(52);const move=e=>{const r=ref.current?.getBoundingClientRect();if(!r)return;setSplit(Math.max(8,Math.min(92,((e.clientX-r.left)/r.width)*100)))};return <section className="compare-section"><div className="compare-copy"><h2>من الرسم<br/>إلى الواقع.</h2><p>قبل أن يصبح البيت حجراً وزجاجاً، يبدأ بخطوط تختبر النِّسب والفتحات والظل. اسحب الخط لتقارن الفكرة الأولى بالتصوّر النهائي، وترى كيف بقيت لغة المبنى نفسها من الرسم إلى الواقع.</p></div><div ref={ref} className="compare-stage" onPointerMove={move} data-cursor="حرّك"><div className="compare-built" style={{backgroundImage:`url(${IMG.compareRender})`}}/><div className="compare-plan" style={{clipPath:`inset(0 ${100-split}% 0 0)`,backgroundImage:`url(${IMG.compareSketch})`}}/><div className="compare-handle" style={{left:`${split}%`}}><span>↔</span></div><div className="compare-label plan-label">المسقط</div><div className="compare-label built-label">المشهد</div></div></section>}
 function End(){const ref=useRef();const {scrollYProgress}=useScroll({target:ref,offset:['start end','end end']});const buildingY=useTransform(scrollYProgress,[0,.58,1],['105%','5%','0%']);const buildingScale=useTransform(scrollYProgress,[0,.75,1],[.97,1,1]);const copyY=useTransform(scrollYProgress,[0,1],['7%','0%']);return <section className="end" ref={ref}><div className="end-stage"><img className="end-sky-img" src={IMG.sky} alt=""/><motion.img className="end-building" src={IMG.building} alt="" style={{y:buildingY,scale:buildingScale}}/><motion.div className="end-copy" style={{y:copyY}}><h2>المكان<br/>يترك أثراً.</h2></motion.div><div className="end-links"><a href="#" data-cursor="↗">مشاهدة المشاريع ↗</a><a href="#" data-cursor="↗">تواصل معنا ↗</a></div></div></section>}
-function App(){return <><Cursor/><Nav/><main><Hero/><TimeOfDay/><Projects/><Words/><Passage/><Fragments/><PlanToSpace/><End/></main><a className="concept-tester" href="/concepts" aria-label="فتح مختبر الأقسام" data-cursor="↗">↗</a></>}
+function App(){return <><Cursor/><Nav/><main><Hero/><FormationSection/><TimeOfDay/><Projects/><Words/><Passage/><Fragments/><PlanToSpace/><End/></main><a className="concept-tester" href="/concepts" aria-label="فتح مختبر الأقسام" data-cursor="↗">↗</a></>}
 const isConcepts=window.location.pathname.replace(/\/$/,'')==='/concepts';
 createRoot(document.getElementById('root')).render(isConcepts?<Concepts/>:<App/>);

@@ -579,3 +579,79 @@ nav.scrolled .brand{width:82px;height:46px}
   .project-action-new:hover{transform:none}
   .project-action-new:hover::before{transform:translateY(102%)}
 }
+
+/* V24 — house formation section */
+.formation-section{
+  position:relative;
+  min-height:100vh;
+  background:#fff;
+  color:#0b0b0b;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  direction:rtl;
+}
+.formation-inner{
+  width:100%;
+  min-height:100vh;
+  padding:10vh 4vw 8vh;
+  display:grid;
+  grid-template-columns:minmax(280px,.72fr) minmax(0,1.6fr);
+  grid-template-areas:"copy media";
+  align-items:center;
+  gap:2vw;
+}
+.formation-copy{
+  grid-area:copy;
+  align-self:center;
+  max-width:430px;
+  padding-right:1vw;
+  position:relative;
+  z-index:2;
+}
+.formation-copy h2{
+  margin:0;
+  font-size:clamp(58px,6.7vw,112px);
+  line-height:.96;
+  letter-spacing:-.065em;
+  font-weight:900;
+}
+.formation-copy p{
+  width:min(100%,390px);
+  margin:3.2vh 0 0;
+  font-size:clamp(14px,1.05vw,18px);
+  line-height:2;
+  font-weight:500;
+  color:#4a4a4a;
+}
+.formation-media{
+  grid-area:media;
+  min-width:0;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+}
+.formation-media video{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:74vh;
+  object-fit:contain;
+  object-position:left center;
+  background:#fff;
+}
+@media(max-width:800px){
+  .formation-section{min-height:auto}
+  .formation-inner{
+    min-height:auto;
+    padding:13vh 6vw 10vh;
+    grid-template-columns:1fr;
+    grid-template-areas:"copy" "media";
+    gap:6vh;
+  }
+  .formation-copy{max-width:88vw;padding-right:0}
+  .formation-copy h2{font-size:17vw;line-height:.98}
+  .formation-copy p{width:82vw;margin-top:2.5vh;font-size:14px}
+  .formation-media{width:108vw;margin-right:-10vw}
+  .formation-media video{width:100%;max-height:none}
+}
