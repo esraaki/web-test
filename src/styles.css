@@ -660,7 +660,7 @@ nav.scrolled .brand{width:82px;height:46px}
 
 
 /* V27 — content polish, LTR refinement, project routes + internal-page finish */
-@media(pointer:fine){body{cursor:none}a,button{cursor:none}.locale-ar .cursor,.locale-en .cursor{display:grid}}
+
 
 /* project page hero: title sits higher in the image */
 .project-page-hero{align-items:flex-start;padding-top:19vh;padding-bottom:7vh}
@@ -750,4 +750,47 @@ nav.scrolled .brand{width:82px;height:46px}
   .locale-ar .formation-copy h2{font-size:15.5vw;line-height:1.02}
   .locale-ar .fragment-title h2{font-size:17vw;line-height:1.02}
   .locale-ar .compare-copy h2{font-size:14.5vw;line-height:1.04}
+}
+
+/* V29 — requested cursor, layout and media corrections */
+/* Use the browser's native cursor everywhere. */
+@media(pointer:fine){
+  body,body:hover,a,button,.menu-trigger,.word-list button,.compare-stage,.interactive-drawing{cursor:auto!important}
+  a,button,.menu-trigger,.word-list button{cursor:pointer!important}
+  .compare-stage,.interactive-drawing{cursor:ew-resize!important}
+  .cursor{display:none!important}
+}
+
+/* A little separation from the hero footage without changing the type treatment. */
+.hero h1.hero-heading-clean{text-shadow:0 3px 22px rgba(0,0,0,.32)}
+
+/* Day/night title stays crisp instead of fading the second line. */
+.time-copy h2{color:#fff;opacity:1}
+.time-copy h2 span{color:#fff;opacity:1;font-weight:600}
+
+@media(min-width:801px){
+  /* Give the English formation copy enough horizontal room for exactly two authored lines. */
+  .locale-en .formation-inner{grid-template-columns:minmax(430px,.95fr) minmax(0,1.35fr);gap:3vw}
+  .locale-en .formation-copy{max-width:600px}
+  .locale-en .formation-copy h2{white-space:nowrap;font-size:clamp(54px,5.4vw,88px);line-height:1.02}
+  .locale-en .formation-media video{max-height:62vh}
+
+  /* The English day/night title is intentionally two strong lines. */
+  .locale-en .time-copy{width:min(620px,48vw)}
+  .locale-en .time-copy h2{white-space:nowrap;font-size:clamp(48px,5.4vw,88px);line-height:1.04}
+
+  /* Move Arabic supporting copy away from its large title. */
+  .locale-ar .fragment-copy{transform:translateX(-7vw)}
+
+  /* Passage: breathing room at left, supporting copy anchored at bottom-right. */
+  .locale-en .passage h2{padding-left:2.2vw}
+  .locale-en .passage p{left:auto;right:4vw;bottom:8vh;text-align:left}
+}
+
+@media(max-width:800px){
+  .locale-en .formation-copy h2{font-size:12.8vw;line-height:1.02}
+  .locale-en .time-copy h2{font-size:12.2vw;line-height:1.04}
+  .locale-en .passage h2{padding-left:2vw}
+  .locale-en .passage p{left:auto;right:6vw;bottom:7vh;text-align:left}
+  .locale-ar .fragment-copy{transform:none}
 }
