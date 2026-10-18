@@ -1,6 +1,7 @@
 import React,{useEffect,useRef,useState} from 'react';
 import {createRoot} from 'react-dom/client';
 import {AnimatePresence,motion,useScroll,useTransform} from 'framer-motion';
+import {Analytics} from '@vercel/analytics/react';
 import './styles.css';
 
 const IMG={
@@ -220,4 +221,4 @@ let Page=App;
 const projectMatch=route.match(/^\/project\/(wadi-house|courtyard-house|house-of-light)$/);
 if(projectMatch){const slug=projectMatch[1];Page=()=> <ProjectPage slug={slug}/>;}
 else if(route==='/studio')Page=StudioPage;
-createRoot(document.getElementById('root')).render(<Page/>);
+createRoot(document.getElementById('root')).render(<><Page/><Analytics/></>);
